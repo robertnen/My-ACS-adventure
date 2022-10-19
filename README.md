@@ -14,3 +14,4 @@ sill trying to find what
 ## How I will be after finishing
 
 ![alt text](https://github.com/Lucky8boy/My-ACS-adventure-lol/blob/main/mebelike.png?raw=true)
+![alt text](https://github.com/Lucky8boy/My-ACS-adventure-lol/blob/main/first_homework.png?raw=true)
