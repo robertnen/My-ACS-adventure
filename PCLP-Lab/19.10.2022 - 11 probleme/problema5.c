@@ -1,3 +1,5 @@
+//verificare daca 3 numere intregi a, b si c pot forma un triunghi
+
 #include <stdio.h>
 
 int main() { 

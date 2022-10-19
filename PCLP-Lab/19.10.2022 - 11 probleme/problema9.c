@@ -1,3 +1,5 @@
+//afisarea ceasului
+
 #include <stdio.h>
 
 int main() {

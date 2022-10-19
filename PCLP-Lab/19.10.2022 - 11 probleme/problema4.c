@@ -1,5 +1,6 @@
-#include <stdio.h>
+//verificare daca un punct se afla pe axe, iar in caz contrar, in ce cadran face parte
 
+#include <stdio.h>
 
 int main() {
 

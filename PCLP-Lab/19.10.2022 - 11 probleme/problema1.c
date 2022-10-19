@@ -1,3 +1,5 @@
+// afisarea a trei numere la intamplare (pseudorandom) folosind "time.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>

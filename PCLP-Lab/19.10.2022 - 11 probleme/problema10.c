@@ -1,3 +1,5 @@
+//veriicare daca datele introduse sunt corecte (si posibil afisarea ceasului)
+
 #include <stdio.h>
 
 int main() {

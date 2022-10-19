@@ -1,10 +1,10 @@
+//afisarea in ordine crescatoarea a 3 numere intregi a, b si c folosind doar "if"
+
 #include <stdio.h>
 
 int main() {
 
     int a, b, c;
-    
-    //folosind doar if-uri, fara a le ordona cresc...
 
     scanf("%d %d %d", &a, &b, &c);
 

@@ -1,3 +1,5 @@
+//gasirea minimului si maximului a 4 numere folosind doar "if"
+
 #include <stdio.h>
 
 int main() {

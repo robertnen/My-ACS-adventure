@@ -1,3 +1,5 @@
+//afisarea a 3 numere reale cu %f %e si %g
+
 #include <stdio.h>
 
 int main() {
