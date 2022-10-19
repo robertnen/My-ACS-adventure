@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int main() {
+
+    float f, e, g;
+
+    scanf("%f%e%g", &f, &e, &g);
+
+    printf("%f %e %g", f, e, g);
+
+    return 0;
+}
