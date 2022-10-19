@@ -1,2 +1,13 @@
-# PCLP-Lab-2-tema
- Tema PCLP 19.10.2022
+# My ACS's adventure lol
+
+"My ACS's adventure lol" contains everything I do in college as homework.
+
+```bash
+
+```
+
+## Usage
+
+```bash
+sill trying to find what
+```
