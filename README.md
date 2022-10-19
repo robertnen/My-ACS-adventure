@@ -11,3 +11,6 @@
 ```bash
 sill trying to find what
 ```
+## Footage before finishing
+
+![alt text](https://github.com/Lucky8boy/My-ACS-adventure-lol/blob/main/image.jpg?raw=true)
