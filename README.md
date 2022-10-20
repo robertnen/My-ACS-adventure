@@ -3,7 +3,7 @@
 "My ACS's adventure lol" contains everything I do in college as homework.
 
 ```bash
-echo "Hallo!"
+echo "Hello, World!"
 ```
 
 ## Usage
