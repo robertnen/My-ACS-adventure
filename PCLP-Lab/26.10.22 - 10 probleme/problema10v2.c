@@ -49,7 +49,7 @@ int main() {
         } else powerOfTen *= 100, clog -= 2;
     }
 
-    numberOfDigits  = (powerOfTen * ( 9 * log - 1) + 1) / 9;
+    numberOfDigits  = (powerOfTen * (9 * log - 1) + 1) / 9;
     numberOfDigits += (n + 1 - powerOfTen) * (log + 1);
 
     printf("%llu", numberOfDigits);
