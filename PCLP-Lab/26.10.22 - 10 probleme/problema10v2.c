@@ -41,13 +41,8 @@ int main() {
     int log = getLogOf10(n), clog = log;
 
     //calculez 10^[log n]
-    while(clog) {
-        if(clog % 2) {
-            
-            powerOfTen *= 10;
-            clog--;
-        } else powerOfTen *= 100, clog -= 2;
-    }
+    while(clog) 
+         (clog % 2) ? (powerOfTen *= 10, clog--) : (powerOfTen *= 100, clog -= 2);
 
     numberOfDigits  = (powerOfTen * (9 * log - 1) + 1) / 9;
     numberOfDigits += (n + 1 - powerOfTen) * (log + 1);
