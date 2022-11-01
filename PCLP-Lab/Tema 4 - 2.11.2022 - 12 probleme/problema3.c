@@ -8,35 +8,43 @@ int main() {
 
     scanf("%d%d", &row, &col);
 
-   int **array = (int**) malloc(row * sizeof(int*));
+    //imi e frica cand scriu * la pointeri, dar la doua deja am cosmaruri...
+    int** array = malloc(row * sizeof(int*));
 
-   for(int i = 0; i < row; i++) {
+    for(int i = 0; i < row; i++) {
 
-        array[i] = (int*) malloc(col * sizeof(int));
+        array[i] = malloc(col * sizeof(int));
 
         for(int j = 0; j < col; j++)
             scanf("%d", &array[i][j]);
 
-   }
+    } 
 
-   int maximum, saddle;
-   bool isFirstTime = true;
 
-   for(int i = 0; i < row; i++) {
+    //de ce se numeste "șa" ce se cere??
+    int maximum, saddle;
+    bool isFirstTime = true;
+
+    //caut cel mai mare numar de pe fiecare linie si in acelasi timp minimul dintre cele mai mari numere 
+    for(int i = 0; i < row; i++) {
 
         maximum = array[i][0];
 
         for(int j = 1; j < col; j++)
             if(maximum < array[i][j]) maximum = array[i][j];
 
-        if(isFirstTime) saddle = maximum, isFirstTime = false;
-        else if(saddle > maximum) saddle = maximum;
+        if(isFirstTime) {
 
-   }
+            saddle = maximum; 
+            isFirstTime = false;
 
-    free(array);
+        } else if(saddle > maximum) saddle = maximum;
 
-    printf("%d", saddle);
+    }
 
-    return 0;
+     free(array);
+
+     printf("%d", saddle);
+
+     return 0;
 }

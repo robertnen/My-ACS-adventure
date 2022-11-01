@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include <stdio.h>
 
 int main() {
 
@@ -9,7 +9,7 @@ int main() {
 
     scanf("%d", &n);
 
-    int* array = calloc(n, sizeof(int));
+    int* array = (int *) malloc(n * sizeof(int));
 
     for(int i = 0; i < n; i++) {
 
