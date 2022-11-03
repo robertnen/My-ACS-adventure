@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include "myheader.h"
 
 int main() {
 
@@ -8,30 +9,20 @@ int main() {
 
     scanf("%d%d", &row, &col);
 
-    //imi e frica cand scriu * la pointeri, dar la doua deja am cosmaruri...
-    int** array = malloc(row * sizeof(int*));
+    int** matrix = (int**) malloc(row * sizeof(int*));
 
-    for(int i = 0; i < row; i++) {
+    readMatrix(&matrix, row, col);
 
-        array[i] = malloc(col * sizeof(int));
-
-        for(int j = 0; j < col; j++)
-            scanf("%d", &array[i][j]);
-
-    } 
-
-
-    //de ce se numeste "șa" ce se cere??
     int maximum, saddle;
     bool isFirstTime = true;
 
     //caut cel mai mare numar de pe fiecare linie si in acelasi timp minimul dintre cele mai mari numere 
     for(int i = 0; i < row; i++) {
 
-        maximum = array[i][0];
+        maximum = matrix[i][0];
 
         for(int j = 1; j < col; j++)
-            if(maximum < array[i][j]) maximum = array[i][j];
+            if(maximum < matrix[i][j]) maximum = matrix[i][j];
 
         if(isFirstTime) {
 
@@ -42,7 +33,7 @@ int main() {
 
     }
 
-     free(array);
+     freeMatrix(&matrix, row);
 
      printf("%d", saddle);
 
