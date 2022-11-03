@@ -16,7 +16,7 @@ int main() {
 
     underDiagonalElements(matrix, size);
     
-    free(matrix);
+    freeMatrix(&matrix, size);
 
     return 0;
 }
