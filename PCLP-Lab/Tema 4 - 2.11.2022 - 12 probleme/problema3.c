@@ -33,6 +33,7 @@ int main() {
 
     }
 
+     //functie care elibereaza spatiul alocat pentru o matrice
      freeMatrix(&matrix, row);
 
      printf("%d", saddle);

@@ -42,7 +42,7 @@ int main() {
     }
         
 
-    //afisez secventa cea mai lunga...
+    //afisez secventa cea mai lunga
     showVector(vector, iPos_max, fPos_max);
 
     free(vector);

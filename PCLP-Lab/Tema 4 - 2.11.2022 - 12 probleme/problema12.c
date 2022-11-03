@@ -13,6 +13,7 @@ int main() {
 
     int* vector = (int*) malloc(n * sizeof(int));
 
+    //toate elementele din vector au valoarea 0
     nullVector(&vector, n);
 
     for(int i = 0; i < m; i++) {
@@ -23,6 +24,7 @@ int main() {
 
     }
 
+    //afisez rezultatul
     showVector(vector, 0, n - 1);
 
     return 0;

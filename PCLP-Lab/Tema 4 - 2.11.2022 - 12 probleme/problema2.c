@@ -15,7 +15,7 @@ int main() {
 
         scanf("%d", numbers + i);
 
-        //nu mai fac cu ? : 
+        //nu mai fac cu ? : si folosesc if: 
         if(numbers[i] < 0) numOfNeg++;
         else numOfPos++;
 

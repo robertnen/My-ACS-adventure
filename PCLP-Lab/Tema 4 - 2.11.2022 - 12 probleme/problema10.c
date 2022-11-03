@@ -15,6 +15,7 @@ int main() {
 
     numbers = (float*) malloc(n * sizeof(float));
 
+    //la fel ca readVector(), doar ca e pt float
     readVectorF(&numbers, n);
 
     scanf("%d", &m);
@@ -26,6 +27,7 @@ int main() {
     if(!isAscendedOrdered(intervals, m)) printf("Error\n");
     else {
 
+        //sortez numerele reale crescator
         sortVectorF(&numbers, 0, n - 1);
 
         int i, j;

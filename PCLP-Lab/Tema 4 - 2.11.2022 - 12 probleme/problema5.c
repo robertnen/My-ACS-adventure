@@ -33,6 +33,7 @@ int main() {
     free(A);
     free(B);
 
+    //afiseaz vectorul
     showVector(C, 0, sizeC - 1);
 
     free(C);

@@ -18,7 +18,7 @@ int main() {
 
     for(int i = 0; i < size; i++) {
 
-        //matemaic, daca suma e negativa nu are sens sa adaug asa ca iau alta suma
+        //iau alta secventa
         if(sum < 0) {
 
             sum  = 0; 
