@@ -10,7 +10,10 @@ int main() {
     int rowA, rowB, colA, colB;
     int **A, **B, **C;
 
+    scanf("%d%d", &rowA, &colA);
     readMatrix(&A, rowA, colA);
+
+    scanf("%d%d", &rowB, &colB);
     readMatrix(&B, rowB, colB);
 
     if(colA != rowB) printf("imposibil\n");

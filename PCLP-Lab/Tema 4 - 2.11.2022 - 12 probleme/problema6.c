@@ -10,7 +10,7 @@ int main() {
 
     int size, **matrix;
 
-    scanf("%d", size);
+    scanf("%d", &size);
 
     readMatrix(&matrix, size, size);
 

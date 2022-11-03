@@ -6,7 +6,9 @@ int main() {
 
     int *vector, size, sum, maxSum;
 
-    readVector(&vector, &size);
+    scanf("%d", &size);
+
+    readVector(&vector, size);
 
     //iPos = pozitia initiala 
     //fPos = pozitia finala
