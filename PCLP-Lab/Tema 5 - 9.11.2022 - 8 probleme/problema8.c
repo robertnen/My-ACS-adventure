@@ -26,7 +26,7 @@ int arie_intersectie(int x11, int y11, int x12, int y12, int x21, int y21, int x
     if(x21 > x12 || x22 < x11) return 0;
     if(y21 < y12 || y22 > y11) return 0;
 
-    //"fixez" primul triunghi si incerc sa vad unde se afla relativ al doilea
+    //"fixez" primul dreptunghi si incerc sa vad unde se afla relativ al doilea
     //folosind coordontale colturilor
     if(x21 >= x11 || x21 <= x12) {
 

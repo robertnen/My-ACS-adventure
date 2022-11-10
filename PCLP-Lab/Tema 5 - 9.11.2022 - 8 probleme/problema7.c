@@ -20,7 +20,7 @@ int main() {
 
 int transforma(int n) {
 
-    //daca n e 0 atunci raspunsupul este 0
+    //daca n e 0 atunci raspunsul este 0
     if(!n) return 0;
 
     int aux = n, ap[10] = {0};
