@@ -9,10 +9,13 @@ int main() {
     double x, result;
     int n;
     
+    //citire
     scanf("%lf%d", &x, &n);
 
     result = taylor(x, n);
 
+    // las asta aici chiar daca nu e ok
+    // la unele cazuri nu imi da rezultatul fara urmatoarele 2 randuri
     // result = (int)(result * 10000);
     // result /= 10000;
 
@@ -22,10 +25,12 @@ int main() {
 
 }
 
+//suma taylor
 double taylor(double x, int n) {
 
     double sum = 0;
 
+    // sum = Σ x^n / n!
     for(int i = 0; i <= n; i++)
         sum += putere(x, i) / factorial(i);
 
