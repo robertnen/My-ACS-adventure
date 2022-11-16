@@ -38,6 +38,7 @@ int cmmmc(int a, int b) {
 
     }
 
+    // a = (a, b)
     return product / a;
 
 }
