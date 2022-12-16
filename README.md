@@ -19,5 +19,5 @@ echo "sill trying to find what"
 
 ![Poza cu prima tema facuta](https://github.com/Lucky8boy/My-ACS-adventure-lol/blob/main/first_homework.png?raw=true)
 
+## New photo yey
 ![Poza cu prima tema la proiectare logica](./Proiectare_Logica/uscator_de_par_rotativ.svg)
-<img src="./Proiectare_Logica/uscator_de_par_rotativ.svg">
