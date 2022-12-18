@@ -1,126 +1,95 @@
 #include <stdio.h>
-#include <stdbool.h>
 
-//citeste datele de intrare
-void readInput(int vector[], int* size);
-
-//tine minte intr-un vector cycles toate ciclurile, iar in positions indicii de unde incep si se termina
-//returneaza o valoarea egala cu 2 * numarul de cicluri pentru afisare
-int findCycles(int boxes[], int cycles[], int positions[], bool isOpen[], int size, int* lmax);
-
-//afisarea - isWin semnifica daca prizonierii au castigat sau nu
-void output(int cycles[], int positions[], int numberOfCycles, bool isWin);
+void readInput(int vector[], int* size); //citeste datele de intrare
+//gaseste ciclurile
+int findCycles(int boxes[], int cycles[], int positions[], short isOpen[], int size, int* lmax);
+void output(int cycles[], int positions[], int numberOfCycles, short isWin);
 
 int main() {
 
-    int numberOfPrisoners, maxLength, position, index;
+    // position tine minte numarul de pozitii
+    int numberOfPrisoners, maxLength = -1, position, i;
 
-    //boxes -> pt cutii; cycles -> tine minte toate ciclurile;
-    // positions -> retine in cycles unde incepe si unde se termina un ciclu
+    // positions retine unde incepe si unde se termina fiecare ciclu
     int boxes[501], cycles[501], positions[501];
 
-    //tine minte ce cutii au fost deschide
-    bool isOpen[501] = {0};
+    short isOpen[501], isWin; //tine minte ce cutii au fost deschide
 
-    readInput(boxes, &numberOfPrisoners);
-    
-    maxLength = -1;
+    for(i = 0; i < 501; i++) isOpen[i] = 0;
+
+    readInput(boxes, &numberOfPrisoners); 
 
     position = findCycles(boxes, cycles, positions, isOpen, numberOfPrisoners, &maxLength);
 
+    isWin = maxLength <= numberOfPrisoners / 2;
 
-    printf("%d", maxLength);
-
-    printf("\n");
-
-    for(int i = 1; i <= position; i++)
-        printf("%d ", positions[i]);
-
-    printf("\n");
-
-    for(int i = 1; i <= numberOfPrisoners; i++)
-        printf("%d ", cycles[i]);
-    
-
-    //output(cycles, positions, position, (maxLength <= numberOfPrisoners / 2));
+    output(cycles, positions, position, isWin);
 
     return 0;
 }
 
-//citeste datele de intrare
-void readInput(int vector[], int* size) {
+void readInput(int vector[], int* size) { //citeste datele de intrare
+
+    int i;
 
     scanf("%d", size);
-
-    for(int i = 1; i <= (*size); i++)
-        scanf("%d", &vector[i]);
-    
+    for(i = 1; i <= (*size); i++) scanf("%d", &vector[i]);
 }
 
-//tine minte intr-un vector cycles toate ciclurile, iar in positions indicii de unde incep si se termina
-//returneaza o valoarea egala cu 2 * numarul de cicluri pentru afisare
-int findCycles(int boxes[], int cycles[], int positions[], bool isOpen[], int size, int* lmax) {
+//tine minte intr-un vector cycles toate ciclurile, iar in positions indicii
+//de unde incep si se termina returneaza o valoarea egala
+//cu 2 * numarul de cicluri pentru afisare
+int findCycles(int boxes[], int cycles[], int positions[], short isOpen[], int size, int* lmax) {
 
-    int iPos, fPos, numberOfCycles, prisoner;
+    int iPos = 1, fPos = 1, numberOfCycles = 0, prisoner, i;
 
-    numberOfCycles = 1;
-    iPos = fPos = 1;
+    for(i = 1; i <= size; i++) {
+        if(!isOpen[i]) { //verific daca am mai fost
 
-    for(int i = 1; i <= size; i++) {
-
-        if(!isOpen[i]) {
-
-            printf("Prisoner: %2d iPos: %2d\n", i, iPos);
-
-            positions[numberOfCycles] = iPos;
-            prisoner = i;
+            //se incepe un ciclu nou si plec cu urmatorul element
+            positions[++numberOfCycles] = iPos;
+            prisoner = boxes[i];
             cycles[iPos] = i;
 
             while(!isOpen[prisoner]) {
+                isOpen[prisoner] = 1;
 
-                isOpen[prisoner] = true;
+                if(prisoner == i) { //s-a terminat ciclul
+                    if((*lmax) < fPos - iPos + 1)
+                        (*lmax) = fPos - iPos + 1;
 
-                if(prisoner == i) {
-                    
-
-                    if((*lmax) < fPos - iPos + 1) (*lmax) = fPos - iPos + 1;
-
+                    //tin minte indexul din cycles unde se termina ciclul
                     positions[++numberOfCycles] = fPos;
-                    iPos = fPos + 1;
 
+                    //ipos are pozitia urmatorului ciclu (daca exista)
+                    iPos = ++fPos;
                 } else {
 
-                    cycles[++fPos] = prisoner;
-                    prisoner = boxes[prisoner];
-
+                    cycles[++fPos] = prisoner; //ciclul se mareste
+                    prisoner = boxes[prisoner]; //merg mai departe
                 }
-
             }
-
         }
-
     }
-    
     return numberOfCycles;
 }
 
-//afisarea - isWin semnifica daca prizonierii au castigat sau nu
-void output(int cycles[], int positions[], int numberOfCycles, bool isWin) {
+void output(int cycles[], int positions[], int numberOfCycles, short isWin) {
 
-    if(isWin) printf("Da\n");
-    else printf("Nu\n");
+    if(isWin) printf("Da\n"); //isWin semnifica daca prizonierii
+    else printf("Nu\n"); //au castigat sau nu
 
-    int iPos, fPos; //pozitia finala a unui ciclu, respectiv cea finala
+    int iPos, fPos, i, j; //pozitia finala a unui ciclu, respectiv cea finala
 
-    for(int i = 1; i <= numberOfCycles; i += 2) {
+    for(i = 1; i <= numberOfCycles; i += 2) {
 
         iPos = positions[i];
-        fPos = positions[i + 1]; // numberOfCycles e numar par, deci nu ies din vector
+        fPos = positions[i + 1];
 
-        for(int j = iPos; j <= fPos; j++)
-            printf("%d ", cycles[j]);
-        
+        //fac outputul ca sa mearga in checker
+        printf("%d", cycles[iPos]);
+
+        for(j = iPos + 1; j <= fPos; j++) printf(" %d", cycles[j]);
         printf("\n");
-
     }
 }

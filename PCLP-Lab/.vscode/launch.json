@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/rober/Documents/GitHub/PCLP-Lab-2-tema/PCLP-Lab/Tema 9 - 7.12.2022 - 6 probleme",
-      "program": "c:/Users/rober/Documents/GitHub/PCLP-Lab-2-tema/PCLP-Lab/Tema 9 - 7.12.2022 - 6 probleme/build/Debug/outDebug",
+      "cwd": "c:/Users/rober/Documents/GitHub/PCLP-Lab-2-tema/PCLP-Lab/Tema 10 - 14.12.2022 - 4 probleme",
+      "program": "c:/Users/rober/Documents/GitHub/PCLP-Lab-2-tema/PCLP-Lab/Tema 10 - 14.12.2022 - 4 probleme/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
