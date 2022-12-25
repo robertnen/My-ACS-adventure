@@ -37,7 +37,7 @@ int main() {
     for(index = 0; index < n; index++) {
 
         //iau linie cu linie, scot in line cuvintele si pozitia fiecaruia
-        //si in length pun lungimea linie citite
+        //si in length pun lungimea liniei citite
         length = readLine(&line, lineInput);
 
         outputPerLine(&line, length, output);
