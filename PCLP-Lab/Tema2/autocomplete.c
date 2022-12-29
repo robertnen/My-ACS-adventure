@@ -140,7 +140,8 @@ void dictionarySort(int numberOfWords, entry_t* words) {
 //returneaza pe ce pozitie se afla un cuvant, -1 daca nu exista
 int getWordIndex(int numberOfWords, entry_t* words, char word[]) {
 
-    for(int index = 0; index < numberOfWords; index++)
+    int index;
+    for(index = 0; index < numberOfWords; index++)
         if(!strcmp((words + index)->word, word)) return index;
 
     return -1;

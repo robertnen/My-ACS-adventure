@@ -12,7 +12,7 @@ void copyString(char destination[], char source[], int n);
 
 int main() {
 
-    int n, pos;
+    int n, pos, i;
     unsigned int number, result;
     char binary[32], num[5], op[3];
 
@@ -29,7 +29,7 @@ int main() {
     result = decimalConvertor(num); //primul numar
     pos = 4;
 
-    for(int i = 0; i < n; i++) { // am n operatii
+    for(i = 0; i < n; i++) { // am n operatii
 
         copyString(op, binary + pos, 2);
         op[2] = '\0';
@@ -170,7 +170,8 @@ unsigned int leftRotation(unsigned int num_1, unsigned int num_2) {
 
 void copyString(char destination[], char source[], int n) {
 
-   for(int i = 0; i < n; i++)
+   int i;
+   for(i = 0; i < n; i++)
         destination[i] = source[i];
 
 }

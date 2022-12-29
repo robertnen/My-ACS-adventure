@@ -12,7 +12,7 @@ typedef struct {
 } Line;
 
 //citeste o linie, o imparte in cuvinte si tine minte undese afla fiecare
-int readLine(Line* line, char lineInput[]);
+int readLine(Line* line, char lineInput[], char toSave[]);
 //functia returneaza pozitia pe care o are keyword-ul sau -1 daca nu este
 int wordPosition(char* word);
 //pune _ de la pos_1 la pos_2 inclusiv
@@ -22,23 +22,28 @@ void outputPerLine(Line* line, int size, char output[]);
 
 int main() {
 
-    int n, index, length;
-    char output[100] = "", lineInput[100] = "";
+    int n, index, length, counter = 0, i;
+    char output[103] = "", lineInput[103] = "", **lines, toSave[103] = "";
     Line line;
 
     scanf("%d ", &n);
+
+    lines = (char**) malloc(n * sizeof(char*));
 
     line.words = (char**) malloc(100 * sizeof(char*));
     line.pos = (int*) calloc(100, sizeof(int));
 
     for(index = 0; index < 100; index++)
-        line.words[index] = (char*) calloc(100, sizeof(char));
+        line.words[index] = (char*) calloc(103, sizeof(char));
 
     for(index = 0; index < n; index++) {
 
         //iau linie cu linie, scot in line cuvintele si pozitia fiecaruia
         //si in length pun lungimea liniei citite
-        length = readLine(&line, lineInput);
+        length = readLine(&line, lineInput, toSave);
+
+        lines[counter] = (char*) calloc(strlen(toSave) + 1, sizeof(char));
+        strcpy(lines[counter++], toSave);
 
         outputPerLine(&line, length, output);
         output[length + 1] = '\0'; //ca sa fac outputul corect
@@ -49,6 +54,10 @@ int main() {
     for(index = 0; index < 100; index++)  //eliberez spatiul
         free(line.words[index]);
 
+    for(i = 0; i < counter; i++)
+        free(lines[i]);
+
+    free(lines);
     free(line.pos);
     free(line.words);
     return 0;
@@ -56,7 +65,7 @@ int main() {
 
 //citeste o linie, o imparte folosind strtok in cuvinte si tine minte unde
 //se afla fiecare
-int readLine(Line* line, char lineInput[]) {
+int readLine(Line* line, char lineInput[], char toSave[]) {
 
     char input[103], *p;
 
@@ -65,6 +74,7 @@ int readLine(Line* line, char lineInput[]) {
     input[strlen(input) - 1] = '\0';
     int length = strlen(input) - 1;
 
+    strcpy(toSave, input); //problema cere sa salvez inputul...
     strcpy(lineInput, input); //de asta am nevoie la output
 
     ptrdiff_t diff_index; //pentru a calcula indexul cuvintelor
@@ -88,12 +98,13 @@ int readLine(Line* line, char lineInput[]) {
 //functia returneaza pozitia pe care o are keyword-ul sau -1 daca nu este
 int wordPosition(char* word) {
 
+    int i;
     const char KEYWORDS[15][11] = {
                                     "first of", "is a", "list of", "for each",
                                     "from", "in", "is", "for", "unit", "or",
                                     "while", "int", "float", "double", "string"
                                   };
-    for(int i = 0; i < 15; i++)
+    for(i = 0; i < 15; i++)
         if(!strcmp(word, KEYWORDS[i])) return i;
 
     return -1;
@@ -103,17 +114,18 @@ int wordPosition(char* word) {
 //pune _ de la pos_1 la pos_2 inclusiv
 void modifyLine(char outputLine[], int pos_1, int pos_2) {
 
-    for(int i = pos_1; i <= pos_2; i++) outputLine[i] = '_';
+    int i;
+    for(i = pos_1; i <= pos_2; i++) outputLine[i] = '_';
 }
 
 //aici se rezolva in principal exercitiul prin verificarea cuvintelor
 void outputPerLine(Line* line, int size, char output[]) {
 
-    int pos;
+    int pos, i;
 
-    for(int i = 0; i <= size; i++) output[i] = ' ';
+    for(i = 0; i <= size; i++) output[i] = ' ';
 
-    for(int i = 0; i <= line->count; i++) {
+    for(i = 0; i <= line->count; i++) {
 
         if(wordPosition(line->words[i]) > -1) { //keyword dintr-un cuvant
 
