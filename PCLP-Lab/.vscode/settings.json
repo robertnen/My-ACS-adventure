@@ -35,6 +35,7 @@
   ],
   "files.associations": {
     "cmath": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "stdbool.h": "c"
   }
 }

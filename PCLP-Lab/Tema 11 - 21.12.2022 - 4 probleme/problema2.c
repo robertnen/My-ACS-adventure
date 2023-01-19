@@ -1,6 +1,6 @@
 #include <stdio.h> //rezolvata deja pe ocw
 #define BUFMAX 1005
- 
+
 int main(int argc, char *argv[])
 {
 	FILE *dest, *src;
