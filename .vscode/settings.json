@@ -29,6 +29,7 @@
     "**/.vscode/**"
   ],
   "files.associations": {
-    "stdbool.h": "c"
+    "stdbool.h": "c",
+    "problema1": "c"
   }
 }
