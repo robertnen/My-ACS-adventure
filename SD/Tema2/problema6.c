@@ -40,8 +40,7 @@ int numOfDigits(int n) {
 }
 
 int powOfTen(int n) {
-    switch (n)
-    {
+    switch (n) {
     case 0:
         return 1;
     case 1:
