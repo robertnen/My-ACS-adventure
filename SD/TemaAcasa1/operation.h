@@ -12,8 +12,8 @@ Node* insertRightChar(List* list, Node* finger, unsigned char ch);
 void writeChar(Node* finger, unsigned char ch);
 void show(List* list, Node* finger);
 void showCurrent(Node* finger);
-Node* undo(/*pass*/);
-Node* redo(/*pass*/);
-void execute(/*pass*/);
+Node* undo(Stack* stackUndo, Stack* stackRedo, Node* finger, int* totalUndo, int* totalRedo);
+Node* redo(Stack* stackUndo, Stack* stackRedo, Node* finger, int* totalUndo, int* totalRedo);
+Node* execute(Queue* queueExec, Node* finger, Stack** stackUndo, Stack** stackRedo, List* list, int* totalU, int* totalR);
 
 #endif

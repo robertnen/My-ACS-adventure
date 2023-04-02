@@ -17,9 +17,9 @@ List* initLista() {
     return list;
 }
 
-void addNode(List* list, int pos, unsigned char ch) {
+Node* addNode(List* list, int pos, unsigned char ch) {
     list->total++;
-    Node* new = createNode(ch);
+    Node* new = createNode(ch), *p;
     if(pos == 1) { //devine primul mod modificabil din lista
         new->prev = list->head;
         new->next = list->head->next;
@@ -34,8 +34,8 @@ void addNode(List* list, int pos, unsigned char ch) {
             p->next = new;
             if(new->next) new->next->prev = new;
         }
-    new = NULL;
-    free(new);
+    p = new;
+    return p;
 }
 
 void remNode(List* list, int pos) {
@@ -76,27 +76,35 @@ Stack* initStack() {
     return stack;
 }
 
-void pushStack(Stack* stack, Node* finger) {
+int pushStack(Stack* stack, Node* finger) {
     Node2 *new = (Node2*) calloc(1, sizeof(Node2));
     new->nptr = finger;
-    stack->top->next = new;
     new->prev = stack->top;
+    stack->top->next = new;
     stack->top = new;
-    stack->total++;
-    new = NULL;
-    free(new);
+    return ++stack->total;
 }
-void popStack(Stack* stack) {
-    Node2 *p = stack->top;
-    stack->top = stack->top->prev;
+
+int popStack(Stack** stack) {
+    Node2 *p = (*stack)->last;
+    int pos = 0;
+    while(p->next) {
+        p = p->next;
+        pos++;
+    }
+    if(!pos) return (*stack)->total;
+    p->prev->next = NULL;
+    (*stack)->top = p->prev;
     free(p);
-    stack->total--;
+
+    return --(*stack)->total;
 }
+
 Node* topStack(Stack* stack) { return stack->top->nptr; }
 
-void freeStack(Stack* stack) {
-    int i, length = stack->total;
-    for(i = 0; i < length; i++) popStack(stack);
+void freeStack(Stack* stack, int length) {
+    int i;
+    for(i = 0; i < length; i++) popStack(&stack);
     free(stack->last);
     free(stack);
 }
@@ -109,30 +117,28 @@ Queue* initQueue() {
     return queue;
 }
 
-void addQueue(Queue* queue, char* text) {
+void enqueue(Queue* queue, char* text) {
     Node3 *new = (Node3*) calloc(1, sizeof(Node3));
     strcpy(new->text, text);
     queue->rear->next = new;
     new->prev = queue->rear;
     queue->rear = new;
     queue->total++;
-    new = NULL;
-    free(new);
 }
 
-char* frontQueue(Queue* queue) {
-    return queue->front->next->text;
-}
-void remQueue(Queue* queue) {
+char* frontQueue(Queue* queue) { return queue->front->next->text; }
+
+void dequeue(Queue* queue) {
     Node3 *p = queue->front->next;
     queue->front->next = p->next;
     if(p->next) p->next->prev = queue->front;
+    else queue->rear = queue->front;
     free(p);
     queue->total--;
 }
 void freeQueue(Queue* queue) {
     int i, length = queue->total;
-    for(i = 0; i < length; i++) remQueue(queue);
+    for(i = 0; i < length; i++) dequeue(queue);
     free(queue->front);
     free(queue);
 }

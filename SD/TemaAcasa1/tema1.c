@@ -6,24 +6,28 @@
 
 int main() {
 
-    FILE *src;
+    FILE *src, *dest;
+    dest = fopen("tema1.out", "w"); //golesc fisierul
+    fclose(dest);
+
     char inputFile[100];
-    const char* COMMANDS[] = {"MOVE_LEFT", "MOVE_RIGHT", "MOVE_LEFT_CHAR",
-                              "MOVE_RIGHT_CHAR", "WRITE", "INSERT_LEFT",
+    const char* COMMANDS[] = {"MOVE_LEFT_CHAR", "MOVE_RIGHT_CHAR", "MOVE_LEFT",
+                              "MOVE_RIGHT", "WRITE", "INSERT_LEFT",
                               "INSERT_RIGHT", "SHOW_CURRENT", "SHOW",
                               "UNDO", "REDO", "EXECUTE"};
 
     src = fopen("tema1.in", "r");
     fgets(inputFile, 100, src);
-    int length = strlen(inputFile) - 1, i, j, n = 0, pos;
-    inputFile[length] = '\0';
+    int length = strlen(inputFile) - 1, i, j, n, pos, totalU, totalR;
+    inputFile[length] = '\0'; //numarul de operatii care vor fi citite
+    n = totalU = totalR = 0;  //totalU si totalR tin minte cate elemente au stivele
 
-    for(i = 0; i < length; i++) n = n * 10 + inputFile[i] - '0';
+    for(i = 0; i < length; i++) n = n * 10 + inputFile[i] - '0'; //string catre int
 
     Queue *queueExec = initQueue();
-    List *list = initLista();
+    List *list = initLista();   //"banda magica"
     addNode(list, 1, '#');
-    Node *finger = list->head->next;
+    list->finger = list->head->next;    //capul nu se modifica
     Stack *stackUndo = initStack(), *stackRedo = initStack();
 
     for(i = 0; i < n; i++) {
@@ -33,39 +37,16 @@ int main() {
         for(j = 0; j < 12; j++) //caut a cata comanda e din lista
             if(strstr(inputFile, COMMANDS[j])) { pos = j + 1; break; }
 
-        printf("|%s| %d\n", inputFile, pos);
-        switch (pos) {
-            case  1: //move_left
-            case  2: //move_right
-            case  3: //move_left_char
-            case  4: //move_right_char
-                addQueue(queueExec, inputFile);
-                break;
-            case  5: //write
-                addQueue(queueExec, inputFile);
-                /*pass*/
-                break;
-            case  6: //insert_left
-                insertLeftChar(list, finger, inputFile[12]);
-                break;
-            case  7: //insert_right
-                insertRightChar(list, finger, inputFile[13]);
-                break;
-            case  8: //show_current
-                showCurrent(finger);
-                break;
-            case  9: //show
-                show(list, finger);
-                break;
-            case 10: //undo
-            case 11: //redo
-            case 12: //execute
-                break;
-        }
+        if(pos > 0 && pos < 8) enqueue(queueExec, inputFile);
+        else if(pos == 8) showCurrent(list->finger);
+        else if(pos == 9) show(list, list->finger);
+        else if(pos == 10) list->finger = undo(stackUndo, stackRedo, list->finger, &totalU, &totalR);
+        else if(pos == 11) list->finger = redo(stackUndo, stackRedo, list->finger, &totalU, &totalR);
+        else if(pos == 12) list->finger = execute(queueExec, list->finger, &stackUndo, &stackRedo, list, &totalU, &totalR);
     }
-    freeQueue(queueExec);
-    if(stackUndo) freeStack(stackUndo);
-    if(stackRedo) freeStack(stackRedo);
+    freeQueue(queueExec); //eliberarea memoriei
+    freeStack(stackUndo, totalU);
+    freeStack(stackRedo, totalR);
     freeList(list);
     fclose(src);
     return 0;

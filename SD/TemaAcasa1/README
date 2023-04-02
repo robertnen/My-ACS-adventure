@@ -1,0 +1,33 @@
+    Cat timp am petrecut: 5 ore
+    Punctaj teste local: 100.0 / 100
+    Valgrind: 20/20
+
+    Tema a fost rezolvata in 5 fisiere. Cele care incep cu list contin imple-
+mentarea listei cerute pentru banda, stiva si coada + functiile lor specifice.
+Fisierele operation contin toate operatiile care sunt cerute in problema, iar
+tema1.c contine main-ul.
+    Mai intai se retine in n numarul de operatii care se vor executa. Urmeaza
+initializarea stivelor dedicate operatiilor Undo si Redo, cozii pentru comanda
+"EXECUTE" si "banda magica" care este denumita "list".
+    Se citeste in for la fiecare pas cate o operatie dupa care se verifica fo-
+losind strstr a cata comanda este in array-ul constant denumit COMMANDS ce tine
+minte toate comenzile. Ordinea in care au fost puse este importanta deoarece
+exista 4 comenzi de "MOVE" astfel incat cate 2 comenzi de tip "MOVE_LEFT" si
+"MOVE_RIGHT". Daca pos (care retine pozitia in COMMANDS) este intre 0 si 8, a-
+tunci voi baga in queueExec comenzile ce vor fi executate la intalnirea lui
+"Execute". Daca pos e 8 se apeleaza "SHOW_CURRENT", daca e 9 "SHOW", iar daca
+pos e 10, respectiv 11, se scoate din stiva Undo (respectiv Redo) pozitia an-
+terioara a degetului si se readuce in acel loc. De asemenea, daca pos e 12,
+se apeleaza functia "EXECUTE" care, prin implementarea sa, cauta din nou a
+cata pozitie este comanda din primul nod din coada queueExec si va intra in
+functia cu acelasi nume.
+     Implementarea nu contine leak-uri de memorie (am stat mai mult sa vad de
+ce am decat sa rezolv tema :"D ), si incearca sa consume cat mai putina memo-
+rie posibila. Din acest motiv, exista 3 tipuri de noduri pentru fiecare tip de
+structura folosita (Node pentru List, Node2 pentru Stack si Node3 pentru
+Queue). Toate functiile esentiale pentru listele alocate dinamic contin proto-
+tipurile in list.h si codul lor in list.c
+     Operatiile cerute din tema contin prototipurile in operation.h si imple-
+mentarea lor in operation.c. Toate functiile, in afara de writeChar, show si
+showCurrent vor returna mereu un nod care este pozitia in momentul respectiv
+al degetului pe banda magica.
