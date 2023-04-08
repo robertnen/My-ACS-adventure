@@ -17,3 +17,5 @@ PCLP-Lab/.vscode/.vscode/launch.json
 PCLP-Lab/.vscode/.vscode/c_cpp_properties.json
 .vscode/settings.json
 *.json
+.vscode/launch.json
+.vscode/settings.json
