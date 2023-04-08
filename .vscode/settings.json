@@ -31,5 +31,6 @@
   "files.associations": {
     "stdbool.h": "c",
     "problema1": "c"
-  }
+  },
+  "C_Cpp_Runner.useAddressSanitizer": false
 }
