@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/rober/Documents/GitHub/PCLP-Lab-2-tema/SD/Tema6",
-      "program": "c:/Users/rober/Documents/GitHub/PCLP-Lab-2-tema/SD/Tema6/build/Debug/outDebug",
+      "cwd": "c:/Users/rober/Documents/GitHub/PCLP-Lab-2-tema/SD/Tema7",
+      "program": "c:/Users/rober/Documents/GitHub/PCLP-Lab-2-tema/SD/Tema7/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
