@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node{
+typedef struct Node{
     void* data;
-    struct node* next;
-} node;
+    struct Node* next;
+} Node;
 
 typedef struct TList {
-    node* head;
+    Node* head;
     int len;
 } TList;
 
@@ -48,13 +48,13 @@ int add(TList *list, int n, void* data) {
 
     list->len++;
     if(!n) {
-        node* new = (node*) malloc(sizeof(node*));
+        Node* new = (Node*) malloc(sizeof(Node*));
         new->data = data;
         new->next = list->head;
         list->head = new;
 
     } else if(n <= list->len) {
-                node *p = list->head, *new = (node*) malloc(sizeof(node*));
+                Node *p = list->head, *new = (Node*) malloc(sizeof(Node*));
                 int i;
                 for(i = 0; i < n - 1; i++) p = p->next;
                 new->data = data;
@@ -66,7 +66,7 @@ int add(TList *list, int n, void* data) {
 void* nodeRemove(TList *list, int n) {
 
     void* ans;
-    node *p = list->head;
+    Node *p = list->head;
     list->len--;
     if(!n) {
         ans = list->head->data;
@@ -74,7 +74,7 @@ void* nodeRemove(TList *list, int n) {
         free(p);
 
     } else if(n <= list->len) {
-                node *q;
+                Node *q;
                 int i;
                 for(i = 0; i < n - 1; i++) p = p->next;
                 q = p->next;
@@ -89,7 +89,7 @@ int length(TList *list) { return list->len; }
 
 void print_int_list(TList *list) {
 
-    node *curr = list->head;
+    Node *curr = list->head;
     int i;
     for(i = 0; i < list->len; i++) {
          printf("%d ", *(int*) curr->data);
@@ -100,7 +100,7 @@ void print_int_list(TList *list) {
 
 void print_string_list(TList *list) {
 
-    node *curr = list->head;
+    Node *curr = list->head;
     int i;
     for(i = 0; i < list->len; i++) {
          printf("%c ", *(char*) curr->data);
@@ -112,7 +112,7 @@ void print_string_list(TList *list) {
 void free_list(TList **list) {
 
     int i, j;
-    node *p;
+    Node *p;
     for(i = 0; i < (*list)->len; i++) {
         p = (*list)->head;
         for(j = 0; j < (*list)->len; j++) p = p->next;
@@ -125,7 +125,7 @@ void free_list(TList **list) {
 void* findMiddle(TList *list) {
 
     int n = list->len / 2 + (list->len % 2), i;
-    node *p;
+    Node *p;
     for(i = 0; i < n; i++) p = p->next;
     return p->data;
 }

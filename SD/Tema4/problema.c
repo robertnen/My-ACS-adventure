@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node {
+typedef struct Node {
     void * data;
-    struct node *next, *prev;
-} node;
+    struct Node *next, *prev;
+} Node;
 
 typedef struct TDoubleLinkedList {
-    node *head, *tail;
+    Node *head, *tail;
     int len;
 } TDoubleLinkedList;
 
@@ -43,15 +43,15 @@ int main() {
 
 List* init() {
     List *list = (List*) calloc(1, sizeof(List));
-    list->head = (node*) calloc(1, sizeof(node));
-    list->tail = (node*) calloc(1, sizeof(node));
+    list->head = (Node*) calloc(1, sizeof(Node));
+    list->tail = (Node*) calloc(1, sizeof(Node));
     list->head->next = list->tail;
     list->tail->prev = list->head;
     return list;
 }
 
 void freeList(List* list) {
-    node *p = list->tail->prev, *q;
+    Node *p = list->tail->prev, *q;
     while(p->prev) {
         q = p;
         p = p->prev;
@@ -63,7 +63,7 @@ void freeList(List* list) {
 }
 
 void add(List* list, int pos, void* data) {
-    node *new = calloc(1, sizeof(node)), *p;
+    Node *new = calloc(1, sizeof(Node)), *p;
     new->data = data;
     list->len++;
     if(pos - 1 > list->len - pos) {
@@ -101,7 +101,7 @@ void add(List* list, int pos, void* data) {
 }
 
 void removeNode(List* list, int pos) {
-    node *p = list->head, *q;
+    Node *p = list->head, *q;
     while(pos-- > 1) p = p->next;
     q = p->next;
     p->next = q->next;
@@ -111,7 +111,7 @@ void removeNode(List* list, int pos) {
 }
 
 void printInt(List* list) {
-    node *p = list->head->next;
+    Node *p = list->head->next;
     while(p->next) {
         printf("%d ", *(int*)p->data);
         p = p->next;
@@ -120,7 +120,7 @@ void printInt(List* list) {
 }
 
 void printString(List* list) {
-    node *p = list->head->next;
+    Node *p = list->head->next;
     while(p->next) {
         printf("%c ", *(char*)p->data);
         p = p->next;
@@ -129,7 +129,7 @@ void printString(List* list) {
 }
 
 void print_reversedInt(List *list) {
-    node *p = list->tail->prev;
+    Node *p = list->tail->prev;
     while(p->prev) {
         printf("%d ", *(int*)p->data);
         p = p->prev;
@@ -138,7 +138,7 @@ void print_reversedInt(List *list) {
 }
 
 void print_reversedString(List *list) {
-    node *p = list->tail->prev;
+    Node *p = list->tail->prev;
     while(p->prev) {
         printf("%c ", *(char*)p->data);
         p = p->prev;
@@ -147,7 +147,7 @@ void print_reversedString(List *list) {
 }
 
 void add_in_order(List *list, void* data) {
-    node *new = (node*) calloc(1, sizeof(node)), *p;
+    Node *new = (Node*) calloc(1, sizeof(Node)), *p;
     new->data = data;
     p = list->head->next;
     while(*(int*)p->data < *(int*)data && p->next->next) p = p->next;
