@@ -1,0 +1,61 @@
+
+    Cat timp am petrecut facand tema: 6 ore
+    (a durat 2 ore sa gasesc unde am uitat sa dau free :)) )
+
+    Punctaje local:
+        - Cerinta 1 : 20
+        - Cerinta 2 : 30.0
+        - Cerinta 3 : 30.0
+        - Total -> 80.0
+        - Bonus -> 20.0
+        - Mesaj primit: "Felicitari! Ai punctajul maxim: 80p! :)"
+
+    Fisiere pe care le contine zipul:
+        - main.c
+        - essentials.c
+        - myStructs.h
+        - treeFunc.c
+        - treeFunc.h
+        - Makefile
+        - README
+
+    Implementare:
+    In myStructs.h se regasesc structurile folosite in rezolvarea temei: Pixel,
+QuadTree, Queue si QueueNode. Pixel reprezinta un bloc 1x1 din imagine, QuadTree
+arborele cuaternar, Queue coada care este un vector alocat dinamic folosita in
+cerintele 1 si 2 pentru rezolvare si in eliberarea memoriei, iar QueueNode este
+este o lista simplu inlantuita folosita numai pentru cerinta 3. Se pot observa
+si prototipuri. Acestea sunt:
+    - charToNum: transforma un string ce contine un numar in int
+    - sendErrorOfNull: trimite un mesaj de eroare ca dupa un calloc s-a re-
+turnat NULL
+    - sendErrorOfFileNull: aproape la fel ca mai sus, doar ca e vorba de fisi-
+ere
+    - createQueueNode: creeaza un nod nou pentru coada
+    - enqueueNode: adauga un nod in coada
+    - dequeueNode: scoate un nod din coada
+    - frontQueue: returneaza informatia primul nod
+    - rearQueue: returneaza informatia ultimului nod
+    - freeQueue: eliberez coada
+    - initQuadTree: initializez nodul din arbore
+    - newNode: creez un nod nou pentru arbore
+    Implementarea acestora se regaseste in essentials.c
+
+    In treeFunc.h se regasesc alte prototipuri. Acestea sunt:
+    - getMeanValue: returneaza "media culorilor" dintr-o zona a imaginii
+    - generateTree: formeaza arborele cuaternar
+    - quadTreeHeight: returneaza inaltimea arborelui
+    - BFS: numele spune tot
+    - quadMaxSize: returneaza numarul de noduri
+    - remakeQuadTree: reface arborele dintr-o coada
+    - remakeImage: reface imaginea dintr-un copac
+    Implementarea acestora se regaseste in treeFunc.c
+
+    A mai ramas fisierul main.c care contine partea principala a programului:
+    - citirea (imaginea / fisierul compresat etc)
+    - crearea arborelui cuaternar
+    - crearea cozii
+    - modificarea imaginii
+    - compresarea imaginii
+    - decompresarea imaginii
+    - etc

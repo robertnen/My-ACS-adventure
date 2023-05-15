@@ -1,0 +1,115 @@
+Doresc corectarea manuală a testelor pentru tema 1.
+
+# Tema 1 MN
+
+Timp petrecut facand tema: 5-6 ore
+Punctaj local: 91p / 120p
+
+# Markov is coming
+    1. parse_labyrinth:
+    Functia primeste calea fisierului si verifica mai intai daca poate fi des-
+chis. In caz contrar se iese din apel si se afiseaza o eroare.
+    Daca fisierul exista, acesta este citit folosind textread si voi avea un
+vector cu n * m + 2 linii si o coloana, primele 2 elemente fiind m si n. Voi da
+reshape la vector incepand cu indexul 3 si voi obtine transpusa labritintului.
+
+    2. get_adjacency_matrix:
+    Adj este la inceput o matrice cu m * n linii si m * n + 2 coloane. Merg
+prin labirint si folosesc functia bitand() pentru a verifica daca am un perete
+intr-o directie. La final, verific daca pot sa ies din matrice, fie in pozitia
+de a castiga, fie in pozitia de a pierde.
+
+    3. get_link_matrix:
+    Mai intai iau matricea de adiacenta a labirintului si apoi dimensiunile
+sale. Iau fiecare linie si imparte fiecare element la numarul de elemente ne-
+nule de pe linie.
+
+    4. get_Jacobi_parameters:
+    Iau dimensiunea matricei Link si scad 2 deoarece trebuie sa scot matricea
+care nu contine starile de WIN / LOSE.
+    G va primi matricea care incepe de la (1, 1) si ajunge la (n, n), iar c
+primeste vectorul care reprezinta starea WIN.
+
+    5. perform_iterative:
+    Calculez in y G * x + c de maxim max_steps iteratii, iar daca norma dife-
+rentei dintre y si x este mai mica decat tol, functia se opreste.
+
+    6. heuristic_greedy:
+    Prealoc variabila path cu un vector cu o linie si n coloane, unde n e di-
+mensiunea matricei de adiacenta fara 2 elemente. Vectorul isVisited tine minte
+cand am vizitat un punct din labirint. Path este pe post de stiva. Cat timp am
+elemente pe stiva, voi incerca sa ies din labirint. Daca reusesc sa ies, voi
+opri functia si voi returna calea (dar inainte voi scoate elementele nule deoa-
+rece am prealocat mai devreme).
+
+    7. decoded_path:
+    decoded_path va fi la inceput prealocat cu un numar de zerouri egal cu nu-
+marul de coloane al vectorului path. Aplic o formula ca sa vad care esti pozi-
+tia in labirint al fiecarui element path(i) si o bag in decode_path.
+
+# linear-regression
+
+    1. parse_data_set_file:
+    Functia primeste calea fisierului si verifica mai intai daca poate fi des-
+chis. In caz contrar se iese din apel si se afiseaza o eroare.
+    Daca fisierul exista, acesta este citit folosind textscan si un string care
+face formatarea citirii. Acesta este de forma '%d %s %s %s ... %s'. Dupa citi-
+re, voi avea un cell de 3 dimensiuni din care voi scoate numele coloanelor. Du-
+pa bag in Y elementele si restul elementelor in IniitalMatrix.
+
+    2. prepare_for_regression:
+    Iau fiecare linie, inlocuiesc stringurile 'yes', 'no', 'semi-furnished',
+'unfurnished' si 'furnished' apar si le inlocuiesc cu valorile cerute, dupa
+care verific cu ce s-a modificat fiecare string si formez o matrice de valori
+reale. Variabila tmp retine la inceput valoarea 0, dar prin concatenare
+
+    3. linear_regression_cost_function:
+    Scot din Theta primul elemente pentru a fi mai usor de calculat. Dupa cal-
+culez suma si impart la final prin 2 * m.
+
+    4. parse_csv_file:
+    Verific mai intai daca fisierul exista sau poate fi deschis. In caz con-
+trar opresc programul. Citesc fisierul intr-un cell ce reprezinta un vector co-
+loana. Sterg primele 13 coloane care reprezinta numele coloanelor si dupa bag
+in Y elementele din 13 in 13 incepand cu pozitia 1 deoarece asa este citit fi-
+sierul. Il transpun si dupa dau reshape la ce a ramas ca sa obtin matricea do-
+rita.
+
+    5. gradient_descent:
+    Calculez suma si dupa introduc fiecare valoare in Theta. La final bag un 0
+la inceput deoarece am calculat fara sa il iau in considerare.
+
+    6. normal_equation:
+    Consider A ca fiind FeatureMatrix' * FeatureMatrix, iar b FeatureMatrix' *
+Y. Verific daca matricea este simetrica si dupa daca are toate valorile proprii
+pozitive, deci puteam efectua algoritmul. Dupa aplic pseudocodul din enunt si
+adaug la final un 0 la inceputul lui Theta deoarece nu era luat in considerare.
+
+    7. lasso_regression_cost_function:
+    Scot primul element din Theta si calculez prima suma. Impart prin m, iar la
+final adun lambda * suma elementelor lui Theta.
+
+    8. ridge_regression_cost_function:
+    Scot primul element din Theta si calculez prima suma. Impart prin m, iar la
+final adun lambda * suma elementelor la patrat ale lui Theta.
+
+# mnist-101
+
+    1. load_dataset:
+    Verific daca fisierul poate fi deschis. Daca da, dau load.
+
+    2. split_datatest:
+    Aleg o permutare la intrebare pentru linii si coloane si voi rearanja ma-
+tricea. Dupa scot numarul de elemente cerut si impart setul de date.
+
+    3. initial_weights:
+    Calculez epsilon si, deoarece nu mi-a mers pachetul statistics, voi umple o
+matrice de elemente numere intregi din intervalul [-eps * 10000, eps * 10000]
+si voi imparti la final prin 10000 ca sa obtin numere din intervalul cerut.
+
+    4. cost_function:
+    Din pacate nu am primit aici puncte, nu am inteles ce mi se cere si nu am
+putut merge mai departe.
+
+    Nu am implementat restul lucrurilor cerute deoarece nu am inteles ce ar
+trebui sa fac sau nu am luat puncte pe teste.

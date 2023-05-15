@@ -1,0 +1,29 @@
+# Tema PCLP2 (IOCLA)
+
+    Timp petrecut: ~ 9 ore
+    Punctaj local: 100 / 120 pct
+    Probleme rezolvate:
+    - task 1 -> complet
+    - task 2 -> complet
+    - task 3 -> doar functia de rotire
+    - task 4 -> complet
+    - bonus -> complet
+
+    Nu prea am ce sa scriu in README. Este totul comentat unde am crezut ca e
+nevoie, dar o sa vorbesc putin despre ele mai jos.
+    La taskul 1 trec prin fiecare element, fac ce se cere si verific sa nu ies
+din "alfabet".
+    La taskul 2 la sortare am folosit BubbleSort, iar la run_procs calculez me-
+dia aritmetica.
+    La taskul 3 am facut complet prima functie. La enigma nu am inteles tot, am
+incercat sa o inteleg, am facut in C dar stiu ca trebuie in Assembly. Nu am pus
+sursa in C. Nici in C nu am luat toate punctele deoarece nu am putut gasi logica
+din spatele acestei encriptari.
+    La taskul 4 mai intai iau cazurile cu fiecare colt, dupa cu marginilie pe
+rand si la final, stiind ca e interior daca nu am gasit, adaug unde este nece-
+sar 1.
+    La bonus e aproape la fel ca la task 4. Nu e ceva in plus doar ca in loc sa
+am doar 9 cazuri, aici am 19 cazuri deoarece am practic 2 numere care reprezin-
+ta matricea impartita in 2. Fiecare numar poate avea bitii pusi intr-o ordine
+crescatoare incepand cu partea de stanga jos spre dreapta sus cu pozitia fieca-
+uia in ordine crescatoare
