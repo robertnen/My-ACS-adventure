@@ -1,0 +1,10 @@
+# Tema PCLP2
+
+Timp petrecut facand tema: ~ 3 - 4 ore
+Rezultat teste: 100 / 100
+
+    Pentru a rezolva problema, am folosit un vector de senzori numit sensors.
+Dupa citirea din fisier, acesta este inchis, se face sortarea vectorului si se
+executa comenzile din input in ordinea in care apar. Implementarea acestora se
+regaseste in sensorOperations.c pentru operatiile cerute in tema, iar pentru
+cele ce au ajutat la realizarea acestora se afla in myFunc.c.
