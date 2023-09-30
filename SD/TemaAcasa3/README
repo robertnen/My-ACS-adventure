@@ -1,0 +1,141 @@
+/* NENCIU George-Robert - 313CC */
+# Tema 3 SDA
+
+    Timp petrecut: ~ 4 ore
+    Punctaj local:
+        -> Cerinta 1: 40 / 40
+        -> Cerinta 2: 32 / 40
+        -> README: 5 / 5
+        -> Bonus Valgrind: 20 / 20
+    Local nu am avut warninguri si nici erori.
+
+# Despre Fisiere
+    Pentru a rezolva tema, am avut nevoie de 6 fisiere: main.c, errorFuncs.h,
+errorFuncs.c, essentials.c, essentials.h si Makefile.
+    In main.c se regaseste citirea fisierului tema3.in, formarea grafului, ape-
+larea functiilor si afisarea outputului cu ce se cere.
+    Fisierele errorFuncs.c si errorFuncs.h contin functiile cu erori care arata
+in stdder numele variabilei care nu a putut primi adresa ceruta, tipul ei si
+functia in care a fost incercata instructiunea.
+    Fisierele essentials.c si essentials.h contin functiile esentiale pentru
+rezolvarea problemei.
+    Makefile-ul contine regulile de build, clean, debug si debug2. Ultimele do-
+ua le-am folosit pentru a verifica unde da programul segmentation fault, unde
+nu am dealocat cum trebuie sau daca am folosit o valoarea neinitializata.
+    In fisiere se poate vedea ca daca in loc de 'make build' se da 'make debug'
+sau 'make debug2', se compileaza binarul si afieaza (pe langa rezultatele din
+valgrind) un fisier .txt numit 'log.txt' care contine informatii despre fiecare
+variabila importanta la un moment in care ar fi necesara cunoasterea sa. Rezul-
+tatele temei nu se schimba daca 'DEBUG' este definit sau nu deoarece nu modifi-
+ca cum ar trebui sa fie fisierul 'tema3.out'.
+
+# Despre Implementare
+    La inceput, verific daca numarul de argumente introdus este sau nu corect.
+Urmeaza sa verific daca al doilea argument este '1' sau '2'. In caz contrar,
+returnez in stdder un mesaj cu ce probleme am intampinat. Dupa programul ini-
+tializeaza variabilele si tot ce vom folosi.
+    Inainte de citire initializam vectorii pe care ii vom folosi. Acestia ne
+sunt utili deoarece ma voi folosi la fiecare de cerinta de ele. Printre acestea
+se regasesc g.adjLists (lista de noduri), g.areas (vectorul care tin minte din
+ce componenta conexa face parte nodul de la fiecare index), g.names (aici se
+retine numarul care reprezinta locatia), g.nodes (tine minte cate noduri are o
+componenta conexa), g.depths (tine minte adancimea fiecarui nod), g.size (numa-
+rul de noduri pe care le are graful). De asemenea, fiecare nod primeste costul
+de la el la el insusi ca fiind 0, id-ul sau el insusi, din nou, si numarul de
+muchii care se regasesc spre acesta (sau numarul de vecini) tot 0. Este veri-
+ficata la fiecare alocare dinamica daca pointerul a primit o adresa valida si
+daca se poate continua rularea programului.
+    Cand citesc din fisier, citesc mereu cate o linie. Daca linia e de forma
+'Nr_Nr', atunci, folosind functia din essentials 'charToNum' si cateva din li-
+braria 'string.h', impart stringul in ce imi doresc. Aceste numere sunt memo-
+rate in m si n si urmeaza a fi citite m linii de forma 'Nume1_Nume2_Nr'. Ca
+mai sus, procedam aproape la fel, doar ca in graful g voi adauga o un numar
+reprezentativ pentru fiecare nume si un vector de nume ca sa le pot folosi.
+Astfel, obtin doua locatii (A si B sa zicem) si costul drumului de la prima
+la a doua (A->B). Daca argumentul al doilea este '1' (cerinta 1), graful es-
+te neorientat si putem merge si de la a doua locatie spre prima pe un drum de
+acelasi cost (A<->B). In caz contrar, graful este oritentat si adaugam doar un
+drum.
+    Pentru a verifica daca locatia A exista deja, avem functia 'findPosOfName'
+ce returneaza ce numarul reprezinta acel nume sau -1 in cazul in care nu exis-
+ta.
+    Cand adaugam drum nou, voi pune langa 'vectorul de baza' de noduri al gra-
+fului, la inceputul unei liste cu santinela, nodul catre care se duce si cos-
+tul catre acesta, plus celelalte modificare care sunt necesare precum creste-
+rea cu 1 a numarului de muchii care intra in nodul de la care incepe drumul.
+    Se vor initializa vectorii 'isVisited' si 'costs', iar in functie de cerin-
+ta 'queue' si 'path'. La cerinta 1, pentru a gasi numarul de componente conexe,
+fac urmatoarele: fac un BFS modificat care memoreaza din care componenta conexa
+face parte fiecare nod, dupa care voi aplica BFS-uri ca sa am in 'queue' toate
+nodurile dintr-o componenta conexa. Urmeaza algoritmul lui Prim modificat ca sa
+ia nodurile cautate si se reinitializeaza vectorii. Dupa ce am format vectorul
+'costs', adun toate elementele (nu va exista nici una care sa fie infinit deoa-
+rece am folosit nodurile dintr-o componenta conexa) si le bag intr-un vector de
+sume. Folosesc 'qsort' si 'cmpQSort' pentru a le ordona si afisez mai intai in
+'tema3.out' pe prima linie numarul de componente, dupa exact acelasi numar de
+linii ca si cel afisat in care sunt afisate sumele in ordine crescatoare.
+    La cerinta 2 se mai continua putin citirea. Se citeste fiecare adancime si
+o voi memora in 'depths'. Cum formula din enunt precizeaza un raport, drumul
+cautat are o probabilitate mare sa coincida cu drumul cu un cost minim. Lucrand
+numai cu numere naturale, este improbabil ca drumul alea in formarea arborelui
+de cost minim sa nu fie ales. De obicei scorul este peste 0.4 unde drumul este
+cel cauta, altfel are costul foarte mare. Deci nu este nevoie in implementare
+pentru majoritatea cazurilor sa verificam scorul sau altceva. Deci pot folosi
+Dijkstra fara probleme pentru a gasi, mai intai, daca exista drum de la 'Cora-
+bie' la 'Insula', apoi invers si, eventual, distanta totala, adancimea minima
+prin care se trece si numarul total de drumuri necesare.
+    Astfel, mai intai aflu pozitia pentru nodul care reprezinta 'Corabia', si
+dupa pentru 'Insula', aplic algoritmul lui Dijkstra, scap de vectorul de tati
+'path' care e returnat cand verific daca exista drum de la 'Corabie' la 'Insu-
+la', si la a doua apelare a algortimului returnez arborele de cost minim cau-
+tat folosit pentru afisarea pe prima linie a traseului. In functia 'showRoad'
+se restituie recursiv traseul si baga in stringul 'output' ce ne dorim. Totul
+este afisat dupa in 'main' si urmeaza sa fie scrise ce a mai ramas pe fiecare
+linie (distanta totala, adancimea minima prin care s-ar trece si numarul total
+de drumuri necesare pentru a transporta comoara cu acea corabie).
+    La final se face eliberarea memoriei, mai intai scapand de vectorii folo-
+siti in aflarea informatiilor dorite. Urmeaza lucrurile esentiale din graf a fi
+sterse si inchiderea fisierelor, iar la final dealocarea va fi realizata cu suc-
+ces.
+
+# Despre functii
+    'charToNum' primeste ca argument un string. Daca acesta reprezinta un nu-
+mar, acesta va returna acel numar, in caz contrar scoate de la indexul 0 pana
+un numar format din cate cifre consecutive se regasesc. Daca nu exista acestea
+la inceput, se returneaza 0.
+    'cmpQSort' este folosit pentru 'qsort' la compararea a doua numere. Retur-
+neaza diferenta dintre doua numere.
+    'getAdress' imi va da adresa nodului care contine informatii despre cele
+doua numere ce reprezinta localitati. Aceasta este folosita mai ales pentru a
+modifica sau a vedea un nod.
+    'findPosOfNode' primeste ca argumente 'base' si 'id'. Prima reprezinta no-
+dul din care vrem sa vedem daca pleaca o muchie spre nodul cu numarul 'id'. Da-
+ca se intampla asta, voi returna a cata pozitie ocupa in lista cu santinela, iar
+daca nu, se returneaza -1.
+    'findPosOfName' primeste ca argumente 'g' si '*name'. Verifica daca exista
+acel nume printe localitatile deja citite, altfel returneaza -1 ca mai sus.
+    'createNode' numele spune tot.
+    'BFS' este folosit mai ales pentru a vedea ce noduri gasesc in fiecare com-
+ponenta conexa si ajuta enorm in rezolvare.
+    'showRoad' este o functie recursiva. Aceasta primeste un vector de tati si
+afiseaza traseul care trebuie urmat.
+    'shortestPathWithDijkstra' este algoritmul lui Dijkstra adaptat pentru gra-
+ful reprezentat cu liste de adiacenta si pentru un graf care nu trebuie sa fie
+conex, ci poate contine componente conexe. Explicatia despre cum functioneaza
+se regaseste mai sus.
+    'sendErrorOfFileNull' trimite in stdder o eroare despre fisierul care nu a
+putut fi deschis si unde se poate gasi locul.
+    'sendErrorOfNull' la fel ca mai sus, dar folosit cand o alocare nu a mers
+cum trebuie.
+
+# Despre DEBUG
+    Peste tot in fisiere se vor regasi locuri care contin '#ifdef DEBUG'. Aces-
+tea le-am facut pentru mine ca sa vad cum au fost salvate, modificate, alese
+s.a.m.d. fiecare lucru. A ajutat foarte mult in implementare.
+    Acesta scrie in fisierul 'log.txt' mai intai ce se intampla cu argumentele
+executabilului, dupa care trimite starea tuturor lucrurilor esentiale, fie va-
+riabile, fie functii, fie fisiere.
+    'DEBUG' nu este definit implicit, trebuie apelata comanda 'make debug' sau
+'make debug2' care si executa programul imediat dupa compilare cu tot cu val-
+grind (nu avea sens sa fac valgrind deoarece vreau sa vad tot ce poate fi gre-
+sit la program sau ce ar putea pune probleme).
