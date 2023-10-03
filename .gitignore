@@ -21,3 +21,7 @@ PCLP-Lab/.vscode/.vscode/c_cpp_properties.json
 .vscode/settings.json
 .vscode/launch.json
 *.json
+.idea/codeStyles/codeStyleConfig.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
