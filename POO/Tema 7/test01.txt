@@ -1,0 +1,6 @@
+Introducere
+Programarea Orientata pe Obiecte este o paradigma de programare care utilizeaza obiecte ?i interac?iuni antre acestea pentru a modela arhitectura unui program. 
+Aceasta consta an identificarea unor obiecte cu opera?ii (metode) specifice asociate ?i realizarea comunicarii antre aceste obiecte prin intermediul unor mesaje. Elementul constructiv - obiectul - este o instan?a a unei clase (tip definit de utilizator), iar clasele sunt membre ale unei ierarhii, fiind corelate antre ele prin rela?ii de mo?tenire. 
+Introducere
+Programarea Orientata pe Obiecte este o paradigma de programare care utilizeaza obiecte ?i interac?iuni antre acestea pentru a modela arhitectura unui program. 
+

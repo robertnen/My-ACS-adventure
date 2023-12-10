@@ -1,0 +1,5 @@
+In Java, mostenirea se realizeaza folosind cuvantul cheie:
+extends
+implements
+throws
+protected
