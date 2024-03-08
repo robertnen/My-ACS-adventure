@@ -8,6 +8,7 @@
 ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
 ![Octave](https://img.shields.io/badge/OCTAVE-darkblue?style=for-the-badge&logo=octave&logoColor=fcd683)
 ![AssemblyScript](https://img.shields.io/badge/assembly%20script-%23000000.svg?style=for-the-badge&logo=assemblyscript&logoColor=white)
+<img src="https://racket-lang.org/img/racket-logo.svg" height="40" width="40" alt="Racket">
 
 # About it
 "My ACS's adventure" is a repositery where I publish everything I code in college. There are many courses like POO or SO where I developed my skills in each language mentioned.
