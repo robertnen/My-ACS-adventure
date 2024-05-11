@@ -1,0 +1,1 @@
+I only made Shallow.hs and Deep.hs. The other files for checking that I got 120 / 120.
