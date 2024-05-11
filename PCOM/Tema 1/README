@@ -1,0 +1,40 @@
+    Student: Nenciu George-Robert
+    Grupa: 323CC
+    Timp petrecut: > 50 de ore (am pierdut numarul)
+    Dificultate: foarte grea
+    Punctaj local: 100p / 100p
+
+    Despre implementare:
+
+    Pentru inceput, am creat strcuturi noi pentru fiecare protocols
+si pentru a reprezenta un pachet.
+    Packet contine payload-ul, lungimea, interfata si urmatorul loc
+unde trebuie sa ajunga.
+    ARP contine request, reply si type.
+    ICMP contine echo_awk, prot, tle si not_found;
+    Pentru ARP si ICMP ca sa fie lizibil codul si usor de observat,
+declar pentru fiecare o constant si seteze codurile ca cele mentio-
+nate in enuntul temei.
+    Mai este nevoie constante pentru a retine spatii si de unde incep
+zonele cu datele dintr-un pachet.
+    Pentru a fi optim programul, m-am folosit de un binary search tree.
+Acesta are definitiile declarate in bst.h din include, iar implemantarea
+sa este in bst.c din lib.
+    Programul citeste inputul, umple arborele binar de cautare. Este ve-
+rificat si daca input este gresit sau datele sunt corupte.
+    La fiecare pas se verifica mai intai daca e de tip eth, deci foloses-
+te protocolul ICMP pentru a primi un reply despre pachet, iar daca nu,
+se foloseste protocolul ARP si se creeaza un header de requeste, respec-
+tiv unul de reply.
+    Exista functii auxiliare pentru construirea headerelor si a pache-
+telor precum cele din familia build.
+    Pentru fiecare pachet in drumul sau spre destinatie se verifica me-
+reu daca este intreg prin ttl si checksum.
+    Deoarece ne folosim de un arbore binar de cautare nu este nevoie sa
+cautam cea mai buna ruta folosind algoritmi de cautare binara sau ceva
+similar. Putem doar face o parcurgere liniara deoarece destinatia este
+gasita deja foarte repede si e nevoie doar sa ma uit in arp_table pentru
+ip-ul dorit.
+    Functia char_to_num este o functie de merge pa cazurile generale in
+cazul in care cumva cand citim ip-urile din input sa nu ne trezim cu probleme precum spatiu inainte sau dupa numar, aparitia lui 0 ca prima
+cifra sau alte posibilitati.
