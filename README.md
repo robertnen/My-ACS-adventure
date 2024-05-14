@@ -40,6 +40,11 @@
 |   OS   |         Parallel Graph        |                                       Multithreading                                       |               100p              |           100p          |    Hard    |      24     |
 |   POO  |              IMDB             |                    Just like IMDB, but using Java<br>, Swing and Gradle.                   |               250p              |           300p          |    Hard    |      47     |
 
+## PA - Homework 1 - Checker Modififed (Steaua este campioana!)
+This photo leads to a video, click it for fun.
+
+[![Steaua Campioana](./steaua_campioana.png)](https://www.youtube.com/watch?v=FE_uIIx9Fuw)
+
 ## Photo of the first homework
 ![Poza cu prima tema facuta](https://github.com/robertnen/My-ACS-adventure/blob/main/first_homework.png?raw=true)
 
