@@ -1,1 +1,1 @@
-I only made Shallow.hs. The other files for checking that I got 120 / 120.
+I only made Shallow.hs. The other files for checking that I got 120 / 120 points.
