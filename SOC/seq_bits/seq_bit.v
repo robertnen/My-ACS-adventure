@@ -32,7 +32,7 @@ always @(posedge clk)
       state = 0;
       bout = 0;
    end else state <= next;
-   
+
 always @(state, bin)
     case(state)
         2'b00: // am 0 in sir
