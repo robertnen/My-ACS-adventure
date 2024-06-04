@@ -5,10 +5,8 @@
 int main(int argc, char *argv[])
 {
   int j;
-  for (j = 0; j < 15; j++)
-  {
-    printf("%3d\n", j);
-  }
+  for (j = 0; j < 15; j++) printf("%3d\n", j);
+
   system("PAUSE");
   return 0;
 }
