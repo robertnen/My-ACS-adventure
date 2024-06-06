@@ -13,17 +13,17 @@ int main() {
 }
 
 int partition(int left, int right, int arr[]) {
-    int pivot = arr[right], index = left - 1, j;
+    int pivot = arr[right], index = left, j;
     for(j = left; j < right; j++) {
         if(arr[j] < pivot) {
-            arr[++index] ^= arr[j];
+            arr[index] ^= arr[j];
             arr[j] ^= arr[index];
             arr[index] ^= arr[j];
         }
     }
-    arr[index + 1] ^= arr[right];
-    arr[right] ^= arr[index + 1];
-    arr[index + 1] ^= arr[right];
+    arr[index] ^= arr[right];
+    arr[right] ^= arr[index];
+    arr[index] ^= arr[right];
     return index + 1;
 }
 
