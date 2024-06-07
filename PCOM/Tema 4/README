@@ -1,0 +1,224 @@
+    Nume: Nenciu George-Robert
+    Grupa: 323CC
+    Materie: PCOM
+    Tema: 4
+    Nume Tema: Client web. Comunicaţie cu REST API.
+    Comenzi implementate:
+        - register
+        - login
+        - logout
+        - exit
+        - enter_library
+        - add_book
+        - get_books
+        - get_book
+        - delete_book
+
+    # Ore petrecute: aproximativ 14 ore
+
+    # Resurse externe folosite:
+        [^1] parson.c
+        [^2] parson.h
+        [^3] buffer.c, buffer.h, helpers.c, helpers.h,
+            requests.c, requests.h si o parte mica din client.c
+
+    [^1] si [^2] sunt luate din repositery-ul https://github.com/kgabis/parson
+pentru a putea formata si citi cu usurinta fisiere json.
+    [^3] sunt dintr-o solutie pentru laboratorul 9.
+
+    # Pe checker mi-au trecut toate testele. Nu am avut probleme.
+
+    # Despre comenzi
+    Pentru a citi usor codul si pentru a face tema eficient, m-am folosit de:
+    - 2 structuri: Credentials si Book
+    - variabile si constante globale.
+    - mai multe functii
+
+    ## Structuri
+
+    Credentials -> folosit cand un utilizator da log in / register pentru or-
+                  ganizare
+
+    Book -> contine toate campurile necesare pentru o carte. Folosit cand se
+           adauga o carte noua
+
+    ## Variabile globale
+
+    host -> adresa. Nu e o constanta globala deoarece in functia open_connec-
+           tion argumentul e de tip char* si ar da warn de la compilator
+
+    payload -> contine tipul de aplicatie (acelasi motiv de ce e variabila)
+
+    ## Constante
+
+    PORT -> portul 8080
+    MAX -> cate caractere se pot regasi pe o line (data ca si comanda)
+    SRC_API -> unde gasim fisierele
+    PATHS -> caile catre fisierele esentiale comenzilor
+    CMD_ACC -> comenzile care pot fi folosite legate de cont
+    CMD_LIB -> comenzile care pot fi folosite legate de librarie
+    ERRS -> erorile care pot aparea daca sunt probleme
+    SUCS -> mesaj cand o comanda s-a realizat cu succes
+    TOKEN -> contine proprietatea de token din json
+    TITLE -> contine proprietatea de title din json
+
+    ## Functii (despre mesajele de erori si succese dupa ele)
+
+    ### void remove_end_line(char* cmd, int max_size);
+
+    Primeste o comanda data ca input de utilizator si lungimea maxima pe care
+poate sa o aiba. Deoarece de la tastatura se introduce si Enter, ultimul carac-
+ter va fi mereu '\n'. Aceasta functie inlocuieste acesta cu '\0'.
+
+    ### bool is_cmd_acc(char* cmd);
+
+    Primeste o comanda data ca input de utilizator si verifica daca este una de
+are legatura cu un cont, adica daca e una dintre register, login, logout sau
+exit. Acesta intoarce true sau false cu semnificatia "DA / NU". Comenzile de
+verificat se regasesc in constanta CMD_ACC.
+
+    ### bool is_cmd_lib(char* cmd);
+
+    Primeste o comanda data ca input de utilizator si verifica daca este una de
+are legatura cu libraria, adica daca e una dintre enter_library, add_book,
+get_book, get_books sau delete_books. Acesta intoarce true sau false cu semni-
+ficatia "DA / NU". Comenzile de verificat se regasesc in constanta CMD_LIB.
+
+    ### char* get_user_credentials(bool flag);
+
+    Prin aceasta functie, se preiau datele unui (posibil) utilizator. Daca flag
+este false, atunci utilizatorul incearca comanda register, iar daca este true,
+acesta incearca comanda login. Functia formeaza fisierul json cu username-ul si
+parola dupa ce sunt verificate (adica au caractere acceptate) si se returneaza
+un char* care contine datele serializate.
+
+    ### char* get_token(char* cookie);
+
+    Functia primeste un cookie si returneaza tokenul din acesta fara " ", []
+sau orice altceva in plus.
+
+    ### void get_book(Book* book);
+
+    Functia primeste ca parametru adresa unei carti care este construita in
+functie si se verifica sa fie datele bagate corect. Aceasta modifica o va-
+riabila locala din main pentru a putea fi folosita mai tarziu.
+
+    ### char* get_library_books(int sock_fd, char* token);
+
+    Functia primeste fd-ul socketului si un token. Se trimite o cerere pentru
+a primi cartile prin acestea si daca este validata, se intoarce o lista de
+carti sub forma unui json.
+
+    ### void send_book(int sock_fd, Book book, char* token);
+
+    Functie primeste fd-ul socketului, o carte si un token. Aceasta este folo-
+sita pentru comanda add_book si prin ea se face o cerere de adaugare a unei
+carti la server, dupa ce toate datele din carte au fost puse intr-un format
+json.
+
+    ### bool get_book_by_id(int sock_fd, char* token, int id, bool isMuted);
+
+    Functie primeste fd-ul socketului, un token, id-ul cartii si un flag. Este
+aproape la fel ca si functia get_library_books doar ca apare isMuted. Are rolul
+ca atunci cand e true sa nu afiseze pe ecran cartea gasita. Aceasta functie e
+utila pentru a verifica daca o carte exista si pentru a o afisa.
+
+    ### void delete_book(int sock_fd, char* token, int id);
+
+    Functie primeste fd-ul socketului, un token si id-ul cartii. Este folosita
+pentru comanda delete_book si prin aceasta se face o cerere de stergere a unei
+carti.
+
+    # Despre mesajele de erori, succese
+
+    In aproape fiecare functie, se trateaza multe din posibilele erori. La une-
+le prin rezultatul returnat se verifica in main daca acestea s-au realizat cu
+succes. Se folosesc de constantele ERRS si SUCS. Fiecare index pentru acestea
+este detaliat in main dar o sa pun un rezumat aici:
+
+    /* 4xx sau 500
+    * these are not the error codes, they are the indexes
+    *  0 -        register |  1 -  user exists conflict |  2 -        invalid login
+    *  3 -    invalid auth |  4 -           failed auth |  5 - user exists conflict
+    *  6 -      invalid id |  7 -   invalid information |  8 -        access denied
+    *  9 -    user refused | 10 -  book exists conflict | 11 -              timeout
+    * 12 - invalid command | 13 -           server fail | 14 -        empty library
+    * 15 -    invalid book | 16 -  delete access denied
+
+     0. "[ERROR 400] Invalid register data.",
+     1. "[ERROR 409] User already exists.",
+     2. "[ERROR 422] Invalid login data."
+     3. "[ERROR 422] Invalid authentification."
+     4. "[ERROR 401] Failed to authentificate."
+     5. "[ERROR 409] User already on the server."
+     6. "[ERROR 404] Invalid id."
+     7. "[ERROR 422] Invalid page count."
+     8. "[ERROR 403] Access denied to library."
+     9. "[ERROR 400] Empty fields found."
+    10. "[ERROR 409] Book already exists."
+    11. "[ERROR 408] Timeout."
+    12. "[ERROR 400] Invalid command."
+    13. "[ERROR 500] Internal server error."
+    14. "[ERROR 404] Library is empty."
+    15. "[ERROR 404] Book doesn't exist."
+    16. "[ERROR 404] Book can't be deleted."
+
+    /* 2xx
+    * these are not the success codes, they are the indexes
+    * 0 - register | 1 -     log in | 2 -   disconnect
+    * 3 -   access | 4 - book added | 5 - book deleted
+
+    0. "[SUCCESS 201] User is registered.",
+    1. "[SUCCESS 200] User successfully logged in.",
+    2. "[SUCCESS 200] User successfully disconnected.",
+    3. "[SUCCESS 200] User has access to the library.",
+    4. "[SUCCESS 201] Book successfully added.",
+    5. "[SUCCESS 201] Book successfully deleted."
+
+    # Implementare
+
+    Prima oara se face o conexiune. Folodind "while(true)", citeste prin stdin
+fiecare comanda. Daca nu face parte din cele cerute de enunt, se arunca o e-
+roare specifica.
+    Se verifica mai intai daca comanda introdusa este despre conturi sau despre
+librarie prin vectorul de 2 elemente flags. Daca ambele sunt false, atunci co-
+manda este invalida.
+    Daca comanda este:
+    - register: se preiau datele utilizatorului, se trimite o cerere si in
+               functie de raspuns se ofera utilizatorului un mesaj de succes
+               sau de eroare (se verifica daca apare "ok" cu strstr)
+
+    - login: se verifica prin variabila booleana isLogged daca utilizatorul
+            este deja conectat cu acest cont. Se preiau ca mai sus datele
+            prin functia get_user_credentials, se formeaza cererea si este tri-
+            misa catre server. In functie de raspuns este afisat un mesaj si se
+            actualizeaza variabila isLogged (devine true). De asemenea, se me-
+            moreaza cookie-ul pentru a putea fi folosit mai tarziu.
+
+    - logout: se verifica daca isLogged e true si se trec cookie-urile si cheia
+             de acces pe NULL pentru a nu fi folosite de alti utilizatori. Va-
+             riabila isLogged devine false pentru a putea da log in din nou
+
+    - exit: inchide programul astfel: se da break la while si return 0
+
+    - enter_library: se verifica daca isLogged e true, se formeaza o cerere, si
+                    se memoreaza cheia de acces (de acum ii zic doar cheie)
+
+    - add_book: se verifica daca cheia nu e NULL si se cere utilizatorului sa
+               completezele datele pentru noua carte. Daca cartea are un camp
+               gol, la numarul de pagini un NaN, sau apare orice alt caz tratat
+               (se poate verifica in cod), se afiseaza eroarea specifica, chiar
+               si cel in care titlul exista deja
+
+    - get_book: se verifica daca cheia nu e NULL si dupa se cere id-ul. Acesta
+               e verificat sa nu contina spatii si sa fie un numar natural ne-
+               nul. Se afiseaza pe ecran cartea cautata daca cererea a fost ac-
+               ceptata, in caz contrar se arunca o eroare pentru problema in-
+               tampinata
+
+    - get_books: aproape la fel ca in get_book, doar ca nu se foloseste id, doar
+                se afiseaza toate cartile pe care utilizatorul le are
+
+    - delete_book: aproape la fel ca la get_book, doar ca nu se afiseaza cartea
+                  ceruta, dar se face o cerere de stergere a cartii si se re-
+                  turneaza un mesaj un functie de raspuns
