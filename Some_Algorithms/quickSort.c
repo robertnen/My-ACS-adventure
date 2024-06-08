@@ -18,13 +18,13 @@ int partition(int left, int right, int arr[]) {
         if(arr[j] < pivot) {
             arr[index] ^= arr[j];
             arr[j] ^= arr[index];
-            arr[index] ^= arr[j];
+            arr[index++] ^= arr[j];
         }
     }
     arr[index] ^= arr[right];
     arr[right] ^= arr[index];
     arr[index] ^= arr[right];
-    return index + 1;
+    return index;
 }
 
 int quickSort(int left, int right, int arr[]) {
