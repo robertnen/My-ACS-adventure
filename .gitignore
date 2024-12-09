@@ -26,3 +26,7 @@ PCLP-Lab/.vscode/.vscode/c_cpp_properties.json
 .idea/modules.xml
 .idea/vcs.xml
 .idea/workspace.xml
+*.lock
+*.bin
+*.properties
+**/.gradle
