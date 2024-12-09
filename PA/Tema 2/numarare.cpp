@@ -21,7 +21,7 @@ int main() {
     //* read input
     fin >> n >> m;
 
-    //? g - first graph, gc - commong graph
+    //? g - first graph, gc - common graph
     graph g(n + 1), gc(n + 1);
 
     for (int i = 0; i < m; i++) {
