@@ -1,0 +1,105 @@
+Nume: Nenciu George-Robert
+Grupa: 333CC
+Punctaj local:
+    | -> M = 1 && R = 1 => 1.19s (OK)
+    | -> M = 1 && R = 2 => 0.71s (OK)
+    | -> M = 1 && R = 4 => 1.24s (OK)
+    | -> M = 2 && R = 1 => 0.78s (OK)
+    | -> M = 2 && R = 2 => 0.82s (OK)
+    | -> M = 2 && R = 4 => 0.85s (OK, Acceleartie = 1.4)
+    | -> M = 4 && R = 1 => 0.59s (OK)
+    | -> M = 4 && R = 2 => 0.16s (OK, Acceleartie = 7.44)
+    | -> M = 4 && R = 4 => 0.67s (OK, Acceleartie = 1.78)
+    | -> Scalabilitate: 48/48
+    | -> Corectitudine: 36/36
+    | -> Total:         84/84
+Timp petrecut rezolvand tema: ~ 8 ore, mai mult a durat debugul.
+
+    Eu folosesc pe VSC o extensie numita Better Comments care face ca unele co-
+mentarii sa fie colorate in functie de ce e pus dupa //:
+- *     -> verde    (il folosesc pentru etapele de rezolvare)
+- ?     -> albastru (il folosesc pentru informatii in plus)
+- !     -> rosu     (il folosesc daca e ceva important)
+- nimic -> gri
+
+    Constante:
+- ON_ERROR_EXIT (bool, cu valoare true): folosita pentru functia check pentru
+a inchide programul in cazul in care se intampla ceva neasteptat
+- ON_ERROR_CONTINUE (bool, cu valoare false): folosita pentru functia check
+pentru a nu inchide programul in cazul in care se intampla ceva neasteptat, dar
+care nu da alte date in output diferite fata de cele asteptate.
+
+    Pentru a salva datele din fisiere am folosit 3 structuri de date. Cum fie-
+care cuvant poate aparea in mai multe fisiere (si trebuie constant sa fie ordo-
+nat), am ales sa folosesc std::set<int>. Pentru a salva cuvintele din fisiere,
+am nevoie de std::map si asa am ajuns la forma urmatoare forma folosit la toa-
+te: ```std::map<std::string, std::set<int>>```, care adauga element si le tine
+ordonate in functie de ordine alfabetica, apoi in valoare de ordinea crescatoa-
+re.
+
+    Structuri:
+```Words``` -> forma generala explicata anterior a unui cuvant
+```File```  -> reprezinta forma unui fisier. Acesta contine calea catre un fi-
+               sier si daca mai este deschis / citit
+```Data```  -> aici se afla datele sincronizate. Se regasesc fisierele, date
+               despre threaduri, datele tinute in mapperi si in reduceri si
+               mutexul impreuna cu bariera pentru a le sincroniza.
+
+    Clasa ```MapReduce```
+    Ea contine datele primite ca input ce urmeaza a fi verificate si apoi folo-
+site pe intreg programul. Contine functii de "get" si "set" pentru fiecare mem-
+bru din clasa, si 4 functii in plus, 1 care returneaza numarul de threaduri si
+3 functii care verifica daca datele introduse sunt corecte.
+
+    Functia ```void check(bool, std::string, std::string, const bool)``` veri-
+fica mai intai primul argument (care e conditia) daca e adevarata. In cazul in
+care este falsa, se afiseaza fie eroare, fie warningul, totul in functie de
+ultimul argument care reprezinta una din cele 2 constante descrise anterior.
+
+    Functia ```void checkArguments(MapReduce)``` verifica daca datele de intra-
+re sunt corecte si daca fiecare membru din ```MapRed``` care face parte din
+clasa ```MapReduce``` este corect.
+
+    Functia ```inline checkPath(std::string)``` verifica daca argumentul este o
+cale valida spre un fisier care exista si daca are acces.
+
+    Functia ```inline isMapper(Data *data, int id)``` verifica daca un thread
+este un mapper. Aceasta functie e facuta pentru a face codul mai usor de urma-
+rit, fara a avea alt scop.
+
+    Functia ```inline isReducer(Data *data, int id)``` verifica daca un thread
+este un reducer. Aceasta functie e facuta pentru a face codul mai usor de urma-
+rit, fara a avea alt scop.
+
+    Functia ```void* threads_func(void *arg)``` este functia in care fiecare
+thread vede daca e de tip mapper (daca da, proceseaza fisierele si dupa as-
+teapta la bariera sa ajunga si ceilalti) sau de tip reducer (asteapta la ba-
+riera pana cand ajung si mapperi si dupa prelucreaza datele si afiseaza re-
+zultatul primul reducer).
+
+    Functia ```void process_file(Data*, int, File, int)``` primeste ca input
+fisierul ce trebuie citit (pe primul rand din functie se verifica daca cumva
+nu mai erau fisiere necitite ca exista si posibilitatea aceasta) si il imparte
+in cuvinte pentru mapperul respectiv. Mai intai se trece la lowercase, dupa
+care se elimina toate caracterele care nu sunt litere folosind "erase". Daca
+la final am ramas fara caractere, inseamna ca acel "cuvant" nu avea litere.
+
+    Functia ```void mapper(Data*, int)``` reprezinta logica unui thread care
+este un mapper: cat timp exista fisisere necitite, fiecare mapper cauta pri-
+mul fisier necitit pe care il va procesa pana cand nu vor mai ramane fisiere.
+Pentru a nu procesa acelasi fisier de doua ori, se foloseste instructiunea
+```pthread_mutex_lock```.
+
+    Functia ```void reducer(Data*, int)``` reprezinta logica unui thread care
+este un reducer: acesta are cate o parte de cuvinte de preluat din fiecare ma-
+pper.
+
+    Functia ```output(Data *data, int id)``` este functia care scrie rezultate-
+le in fisiere exact cum este cerut. Pentru a realiza acest lucru, am nevoie sa
+"declar" un reducer care va fi "root-ul" unde toate datele obtinute de fiecare
+reducer vor fi tinute in acesta. Cum in fiecare reducer cuvintele sunt sortate
+cum s-a cerut in enunt, a fost nevoie sa fac o variabila numita ```words``` ca-
+re va putea fi sortata exact cum s-a cerut: mai intai dupa primul caracter, a-
+poi dupa numarul de aparitii distincte in fisiere, si apoi dupa ordinea alfabe-
+tica. La final se face un "for" pentru fiecare caracter din alfabet si se obtin
+fisiere cu rezultatele finale.
