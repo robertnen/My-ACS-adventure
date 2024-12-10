@@ -1,0 +1,53 @@
+1 2 3
+
+    Student: Nenciu George-Robert
+    Grupa: 333CC
+    Timp petrecut: > 10 de ore (am pierdut numarul)
+    Dificultate: grea
+    Punctaj local: 100p / 100p
+
+    Am implementat o retea cu 3 switch-uri si 6 hosturi in care am folosit vlan
+si stp. Am adaugat cateva constante globale pentru a fi folosit in cazul in ca-
+re calea catre un fisier se schimba sau se alege o tehnica diferita de a deter-
+mina posibilul cost intre cai (de ex in loc de 10 sa fie 15 in ADDON).
+    Functia ```start_switch(str) -> tuple[dict[str, str], int, int]``` primeste
+ca argument id-ul switch-ului, citeste id-ul pentru stp si configuratia. Se re-
+turneaza datele citite.
+    Functia ```convert_id(str) -> int``` primeste din configuratia un id. Daca
+acesta este 'T', am ales prin conventie sa returneze 0, in caz contart se face
+cast la int si rezultatul este vlan id-ul.
+    Functia ```remove_vlan_id(str) -> str``` primeste frame-ul. Acesta este a-
+pelat cand trimitem pachetul hostului destinatar (sau in caz de broadcast celor
+care au acelasi vlan id) si ei nu are cum sa stie ce id are. Trebuie scos aces-
+ta.
+    Functia ```add_vland_id(str, int) -> str``` primeste frame-ul si vlan id-ul
+atribuit. Fata de functia anterioara, este invers. Se trimite de la host spre
+switch si acesta trebuie sa adauge id-ul in frame (al doilea argument), apoi
+pachetul e trimis pe trunk.
+    Functia ```check_trunk(dict[str, str], str) -> bool``` primeste o interfa-
+ta si configuratia switch-ului si verifica daca legatura este un trunk.
+    Functia ``stp(str, str) -> None``` este cea care implementeaza stp-ul ce-
+rut. Aici am aplicat pseudocodul din enunt.
+    Functia ```parse_ethernet_header()``` este deja din schelet.
+    Functia ```create_vlan_tag()``` este deja din schelet.
+    Functia ```send_bdpu_every_sec() -> None``` trimite pachete pentru BDPU.
+    Variabila ```ADDON``` e deja explicata in primul alineat
+    Variabila ```DEBUG``` e folosita pentru a afisa ce contin anumite variabile.
+    Variabila ```TRUNK``` e folosita pentru ```T``` care apare in fiecare con-
+figuratia a switch-urilor (variabilele care au valoarea ```T``` vor deveni la
+un moment dat 0).
+    Variabilele ```BLOCKED``` si ```Listen``` reprezinta starile porturilor, e-
+le fiind, de fapt, ```False```, respectiv ```True```.
+    Variabilele ```SWITCH_PATH``` si ```SWTICH_CONF_EXTENSION``` sunt folosite
+pentru a determina calea catre cnofiguratia fiecarui switch.
+    Mai multe detalii se regasesc in cod, in acest README am notat in mare ce
+face fiecare functie / variabila. Programul face exact ce se cere in enunt fa-
+ra a avea ceva in minus (poate in plus ca are niste conditii de verificare ca
+nu s-a pierdut permisiunea la vreun fisier sau ceva).
+    Eu folosesc extensia ```Better Comments``` de ```Aaron Bond``` si din cau-
+za asta o sa fie in loc de doar ```#``` unele comentarii cu ```#*```, ```#?```,
+```#!``` sau altele.
+    Mentionez ca ```struct.pack``` are cateva probleme deoarece nu am putut
+folosi ```struct.pack('!6s', b'\x01\x80\xc3\x00\x00\x00')``` in loc de
+```struct.pack('!BBBBBB', 0x01, 0x80, 0xc3, 0x00, 0x00, 0x00)``` si nu am inte-
+les cateva ore unde este problema...
