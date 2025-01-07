@@ -49,7 +49,7 @@ This photo leads to a video, click it for fun.
 ![Poza cu prima tema facuta](https://github.com/robertnen/My-ACS-adventure/blob/main/first_homework.png?raw=true)
 
 ## Photo with the homework from a course with logical gates
-![Poza cu prima tema la proiectare logica](./Proiectare_Logica/uscator_de_par_rotativ-Implementare.drawio.svg)
+![Poza cu prima tema la proiectare logica](./PL/uscator_de_par_rotativ-Implementare.drawio.svg)
 
 [^1]: It's not the maximum possible grade because some projects had bonuses 
 [^2]: The number of gained points can be bigger than the assignemnt's allocated points
