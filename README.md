@@ -20,7 +20,12 @@
 ## EGC - Homework 1 - Tank Wars
 This photo leads to a video, click it to see gameplay.
 
-[![Tank Wars](./EGC/Tank%20Wars/tank_wars.png)](https://www.youtube.com/watch?v=FE_uIIx9Fuw)
+[![Tank Wars](./EGC/Tank%20Wars/tank_wars.png)](https://www.youtube.com/watch?v=mk_vJKW21ik)
+
+## EGC - Homework 2 - Drone Simulator
+This photo leads to a video, click it to see gameplay.
+
+[![Drone Simulator](./EGC/Drone%20Simulator/drone_simulator.png)](https://www.youtube.com/watch?v=fK60X5wAOa0)
 
 # Important courses
 |            Course           |    Languages    | No. of labs | No. of homework | Hours spent | Difficulty | Final Grade |
