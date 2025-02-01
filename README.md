@@ -17,6 +17,11 @@
 # About it
 "My ACS's adventure" is a repositery where I publish everything I code in college. There are many courses like POO or SO where I developed my skills in each language mentioned.
 
+## EGC - Homework 1 - Tank Wars
+This photo leads to a video, click it to see gameplay.
+
+[![Tank Wars](./egc/tank\ wars/tank_wars.png)](https://www.youtube.com/watch?v=mk_vJKW21ik)
+
 # Important courses
 |            Course           |    Languages    | No. of labs | No. of homework | Hours spent | Difficulty | Final Grade |
 |:---------------------------:|:---------------:|:-----------:|:---------------:|:-----------:|:----------:|:-----------:|
