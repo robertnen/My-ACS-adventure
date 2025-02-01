@@ -1,0 +1,18 @@
+# Laughable Goods Emporium
+
+Welcome to the place with all the good deals! Everything is great: top brands,
+cheap prices and fast delivery!
+
+Maybe you need fast fashion, also check out quality electronics, all is very
+cheap here. Write review and receive discount!
+
+But no hackers please! Last week, someone "bought" 1,000 free refrigerators, and
+admin cry until now.
+
+
+Hints:
+
+ * The injected SQL doesn't execute immediately after a request!
+   (so don't bother with automated tools :P)
+ * You must also find out the database type! PayloadAllTheThings!
+ * Unlike the other task, you cannot fetch the sources for this!

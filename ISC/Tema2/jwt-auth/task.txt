@@ -1,0 +1,13 @@
+# JustWatchThis Auth
+
+Check out my new web portal, now with token-based security!
+
+This is currently for VIPs only, so stand by for an account (make sure you bring
+a gift next time we meet so you may get a pass ;) ).
+
+
+Hints:
+
+ * Read/decode the source, Luke!
+ * Come to the dark side, we have *cookies*!
+ * Find snake's source? (make app crash, maybe?)

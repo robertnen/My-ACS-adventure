@@ -1,0 +1,61 @@
+# Remote Shell
+
+The remote shell is a frontend for all other tasks (unless specified otherwise).
+
+Bash and powershell (see below) connect scripts are provided (which should work
+as-is, but also check out their source!).
+
+You will be given a container-based shell on your own private network (where you
+may find other hosts *wink*).
+Inside your container, you will have some of the necessary network tools already
+setup (since you don't root rights to install anything). Anything else (e.g.,
+password cracking tools / web vulnerability scanners etc.) must be run on your
+machine via port forwarding.
+
+The connect script also sets up a local forwarding tunnel on port 8080. So
+anything open on the container will become accessible using your local PC (e.g.,
+browser). Just make sure to open or tunnel that port on your container (you can
+use the helper `webtunnel.sh` socat-based script provided inside)!
+
+
+Here's how the infrastructure works:
+
+The server spawns individual Docker containers (for all tasks) to each SSH user
+session and allocates a unique random port to use for forwarding the HTTP
+protocol, so we will use the OpenSSH client connection multiplexing feature to
+keep the session open throughout this process:
+
+- the SSH client will establish a persistent connection to the task server; the
+  server will allocate dedicated resources to your client (i.e., random
+  container port);
+- script will ask the server to return your random web port number;
+- docker will forward container's :8080 to this random port on the server;
+- after that, it will configure SSH to forward that unique port as ':8080' on
+  your machine, basically obtaining the following topology:
+
+  Your Machine <---> assignment server <---> remote shell container
+        :8080  [ssh]  :<unique port>   [fwd]  :8080
+
+- finally, the script will open the container's shell; from now on, keep the
+  terminal up and you will be able to access the website using a browser on your
+  local machine (after reaching that task);
+- if you close the connection, the server will clean up all resources allocated
+  for you! So read this: 
+
+  WARNING: everything you posted / modified on any container is lost, you will
+  need to repeat some steps again, so make sure to record them e.g. in a readme;
+  the flags / credentials / other variables are static and do not change between
+  your personalized instances); there is also a 30m time limit for each
+  connection!
+
+**Note for Windows users**: OpenSSH for Windows doesn't support control master
+/ session multiplexing (last verified: 2018, so you can still try).
+Try to use WSL (Windows Subsystem for Linux) if possible. Otherwise, install
+Putty and Plink (command line client, bundled if you use the Putty installer)
+and use the provided Powershell script (`connect-putty.ps1`, read the script's
+code). With Putty, don't forget to convert the private SSH key to PPK format (it
+doesn't speak PEM). Ofc, Google it!
+
+For modern, POSIX-compatible OSes, the bash script should work out of the box.
+For WSL2, you might need to use the Linux virtual machine's IP address instead
+of 'localhost' when accessing port 8080 in your browser!
