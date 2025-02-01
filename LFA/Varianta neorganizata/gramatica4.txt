@@ -1,0 +1,17 @@
+% Nenciu George-Robert 333CC
+altnume4 ::= Grammar (
+    alphabet :: { a, b, c, d, f, g, h, i, j, k } ;
+    /*
+    nonterminals :: 2 + 2 = 5 ;
+    tema_e_draguta :: da ;
+    albastru :: { daca ar citi aici ar da segfault } ;
+    */
+    nonterminals :: { S, S1, S2, ABSA, TEST, ORICE} ;
+    start_symbol :: S ;
+
+    S -> a&S | b&S | S1 | ABSA | a&b&TEST;
+    S1 -> a&S2 | b&S1 | e ;
+    S2 -> a&S1 | b&S1 | e ;
+    ABSA -> a;
+    ABSA&TEST -> a&b;
+) ;;

@@ -1,0 +1,23 @@
+% Nenciu George-Robert 333CC
+% Acesta este un automat nedeterminist
+automata2 ::= FiniteAutomaton (
+    alphabet :: { a, b } ;
+    states :: { q0, q1, q2 } ;
+    final_states :: { q2 } ;
+    initial_state :: q0 ;
+
+    q0 -> (
+        a -> q1 ;
+        e -> q2 ;
+        b -> q2 ;
+    ) ;
+
+    q1 -> (
+        a -> q0 ;
+        b -> q2 ;
+    ) ;
+
+    q2 -> (
+        e -> q1 ;
+    ) ;
+) ;;

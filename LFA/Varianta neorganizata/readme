@@ -1,0 +1,40 @@
+Nenciu George-Robert 333CC
+
+    Algortimul este implementat in C++ si respecta fiecare restrictie impusa.
+Am facut programul sa previna cateva posibile erori in cazul in care s-a modi-
+ficat in mod eronat portiuni din exemple.
+    Pentru a verifica ca totul este ok, am adaugat ca exemple in ordinea asta:
+(cu format automat1-4.txt) 1 si 4 determinist, iar 2 si 3 nedeterminist
+(cu format gramatica1-4.txt) 1 - GR, 2 - GIC, 3 - GDC, 4 - GFR
+
+    automat1.txt si gramatica1.txt contin exemplele din enunt
+
+    Valorile (aproape toate) folosite in rezolvare se reseteaza mereu cand se
+termina de citit un fisier. Pentru Gramatica si Automat sunt definite cate un
+set intreg de reguli care prezinta forma lor abstracta si care difera putin
+din cauza formatului inputului / outputlui cerut diferit doar in cuvinte.
+
+    Pentru amandoua, citirea este explicata mai bine in cod pentru fiecare pas.
+    La gramatica, pentru a afla ce tip de gramatica are, presupun ca la inceput
+e GR si incerc din aproape in aproape sau vad cat de restrictionata e. Se veri-
+fica constant daca e GR sau GIC, iar la final se testeaza daca cumva nu e GDC.
+
+    La automat, pentru a afla daca e determinist sau nu, verific daca am varia-
+bila locala, o desfac in stari, si verific daca:
+    - numarul de stari e mai mic sau egal cu numarul de litere din alfabet
+    - nu se repeta vreo litera de doua ori
+    - nu apare 'e -> q-nr-'
+
+    Toate regulile din flex care au _g sau _a sunt cele generale pentru grama-
+tica si automata, doar ca a fost nevoie sa fie diferite din cauza micilor mo-
+dificari precum implicarea unei reguli noi sau calcule care nu pot fi intersec-
+tate (in _g calculez numarul de productii si s-ar incurca cu starile din auto-
+mat).
+    Numarul mare de comentarii e facut mai mult pentru mine ca uneori imi ia
+prea mult sa imi aduc aminte ordinea in care am scris regulile si ce ar fi ur-
+mat sa fac. Mai mult a durat debug-ul deoarece flex are tendinta sa afiseze pe
+ecran eroarea in loc sa spuna ca a dat de un caracter care nu poate fi citit si
+asta mai mult incurca decat ajuta.
+    Tema a durat aproximativ 7 ore (din 26 decembrie era gata), am pus-o abia
+in ultima zi deoarece am fost prins cu multe probleme si nu am apucat sa scriu
+readme-ul decat abia atunci.

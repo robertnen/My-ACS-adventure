@@ -1,0 +1,28 @@
+% Nenciu George-Robert 333CC
+% y este o variabila locala
+/* acesta este un automat */
+% determinist
+emaibun4 ::= FiniteAutomaton (
+    alphabet :: { a, b, c } ;
+    states :: { q0, q1, q2, q4, q5, q6 } ;
+    final_states :: { q1, q2, q6 } ;
+    initial_state :: q0 ;
+    variable nume ::= { a, b } ;
+
+    q0 -> (
+        a -> q1 ;
+        b -> q2 ;
+        c -> ER ;
+    ) ;
+
+    q1 -> (
+        a -> q0 ;
+        b -> q2 ;
+        c -> q1 ;
+    ) ;
+
+    q2 -> (
+        nume -> q2 ;
+        c -> ER ;
+    ) ;
+) ;;

@@ -1,0 +1,10 @@
+% Nenciu George-Robert 333CC
+numegramaticatest3 ::= Grammar (
+    alphabet :: { a, b, c, d } ;
+    nonterminals :: { S, S1 } ;
+    start_symbol :: S ;
+
+    S -> a&S&a | b&S&b | c&S&c | d&S&d | S1 ;
+    S1 -> a&S1 | d&S1 | e ;
+    a&S1 -> S1&a;
+) ;;

@@ -1,0 +1,13 @@
+% Nenciu George-Robert 333CC
+% x este o variabila globala
+variable x ::= { a, b, c } ;
+
+grammar1 ::= Grammar (
+    nonterminals :: { S, S1, S2 } ;
+    alphabet :: { a, b } ;
+    start_symbol :: S1 ;
+
+    S -> a&S | b&S | a&S1 ;
+    S1 -> b&S2 | e ;
+    S2 -> a&S2 | aa ;
+) ;;

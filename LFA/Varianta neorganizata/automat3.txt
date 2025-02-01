@@ -1,0 +1,30 @@
+% Nenciu George-Robert 333CC
+% Acesta este un automat nedeterminist care are multe comentarii
+numeautomat3 ::= FiniteAutomaton (
+    /*
+    alphabet :: { a, b, c, d } ;
+    states :: { q0, q1, q2, q3, q4, q5, q6 } ;
+    alphabet :: { a, b, aigdfakjsf, saduhsa } ;
+    */
+    alphabet :: { a, b } ;
+    % comentariu 1
+    states :: { q0, q1, q2 } ;
+    final_states :: { q2 } ;
+    initial_state :: q0 ;
+
+    q0 -> (
+        a -> q1 ;
+        e -> q2 ;
+        % comentariu 2
+        b -> q2 ;
+    ) ;
+
+    q1 -> (
+        a -> q0 ; % comentariu 3
+        b -> q2 ;
+    ) ;
+
+    q2 -> (
+        e -> q1 ;
+    ) ;
+) ;; % comentariu 4
