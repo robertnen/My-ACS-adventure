@@ -20,7 +20,7 @@
 ## EGC - Homework 1 - Tank Wars
 This photo leads to a video, click it to see gameplay.
 
-[![Tank Wars](./egc/tank\ wars/tank_wars.png)](https://www.youtube.com/watch?v=mk_vJKW21ik)
+[![Tank Wars](./egc/tank%20wars/tank_wars.png)](https://www.youtube.com/watch?v=FE_uIIx9Fuw)
 
 # Important courses
 |            Course           |    Languages    | No. of labs | No. of homework | Hours spent | Difficulty | Final Grade |
