@@ -1,4 +1,4 @@
-/** Chipuc Valentin-Daniel 333CC **/
+/** Nenciu George-Robert 333CC **/
 %option noyywrap
 
 %x VARIABILIA LOOP
