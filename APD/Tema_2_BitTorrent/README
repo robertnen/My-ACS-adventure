@@ -1,0 +1,60 @@
+Nume: Nenciu George-Robert
+Grupa: 333CC
+Punctaj local (si pe checker si pe docker):
+    | -> Se ruleaza testul 1...
+    | -> OK
+    | ->
+    | -> Se ruleaza testul 2...
+    | -> OK
+    | ->
+    | -> Se ruleaza testul 3...
+    | -> OK
+    | ->
+    | -> Se ruleaza testul 4...
+    | -> OK
+    | ->
+    | -> Total: 40/40
+Timp petrecut rezolvand tema: ~ 6 ore, mai mult a durat debugul.
+
+    Eu folosesc pe VSC o extensie numita Better Comments care face ca unele co-
+mentarii sa fie colorate in functie de ce e pus dupa //:
+- *     -> verde    (il folosesc pentru etapele de rezolvare)
+- ?     -> albastru (il folosesc pentru informatii in plus)
+- !     -> rosu     (il folosesc daca e ceva important)
+- nimic -> gri
+
+    Implementarea respecta exact cum au fost descrisi pasii in enunt. Respecta
+si fiecare restrictie. Pentru eficienta am folosit cea mai simpla tehnica folo-
+sita in multe zone de comunicare rapida: se gaseste o lista (in general un nu-
+mar limitat mai mic ca pot fi foarte multi, dar aici e completa) si se alege
+arbitrar un seeder, iar daca acesta da NACK sau preia de la el 10 segmente re-
+peta aceasta idee.
+    Peer e scris abstract in structura Client care detine fisierele sale si do-
+reste fisiere de la alti clienti. Trackerul stie la inceput tot despre clienti
+(asa cum scrie clar in enunt) si singurele informatii actualizate sunt: fisie-
+rele de le detin alti clienti la seed si ce fisiere doresc acestia.
+    Dupa ce trackerul ia informatiile, da la fiecare client confirmarea ca poa-
+te incepe si ei preiau de la acesta lista cu seederi pentru fiecare fisier, ac-
+tualizat constant. Implementare pentru a transmite datele prefera o metoda care
+nu consuma mult spatiu si anume un std::string cu datele intr-un format stiut
+de toti. Serializarea si deserializarea sunt generice si sunt facute mai usor
+cu elemente din clasele 'std::istringstream' si 'std::ostringstream'. Riscul de
+a da segmentation fault este foarte mic (in cazul in care cineva intervine, e-
+xecutare repetata a programului nu provoaca - testat de 100 de ori fara proble-
+me la rand) si face citirea formatului si realizarea lui extrem de rapida si u-
+soara.
+    Pentru debug se folosesc 'std::cerr' si 'std::clog' care pot fi folosite pe
+viitor in alte aplicatii, si exista cateva functii precum 'print_client' de a-
+fiseaza datele la momentul respectiv ale unui client.
+    Mutexul este utilizat doar pentru sincronizarea lui 'std::vector' care la
+fiecare 'push_back' are sansa (implemntare sa standard) sa aleaga alte adrese
+pentru fiecare iterator al sau si duce la racing conditions daca nu asteapta.
+    Puteam face mai eficient cu 'std::set' doar ca scrie clar ca trebuie pas-
+trata ordinea hashurile si a numelor fisierelor. Programul oricum este foarte
+rapid deoarce nu reia mereu datele de la 0, tine cont unde a ramas fiecare
+peer, seeder sau chiar trackerul. Practic este implentat si leech-ul deoarece
+in timp ce un fisier este descarcat de un peer si e afisat e posibil prin ale-
+gerea la intamplare a seedului sa fie cel care a descarcat.
+    Un peer poate face hit&run doar daca nu mai are nimeni de descarcat, alt-
+fel e imposibil, deci mereu va creste numarul de seederi si face mai eficient
+totul.
