@@ -18,12 +18,12 @@
 "My ACS's adventure" is a repositery where I publish everything I code in college. There are many courses like POO or SO where I developed my skills in each language mentioned.
 
 ## EGC - Homework 1 - Tank Wars
-This photo leads to a video, click it to see gameplay.
+This photo leads to a youtube video, click it to see gameplay.
 
 [![Tank Wars](./EGC/Tank%20Wars/tank_wars.png)](https://www.youtube.com/watch?v=mk_vJKW21ik)
 
 ## EGC - Homework 2 - Drone Simulator
-This photo leads to a video, click it to see gameplay.
+This photo leads to a youtube video, click it to see gameplay.
 
 [![Drone Simulator](./EGC/Drone%20Simulator/drone_simulator.png)](https://www.youtube.com/watch?v=fK60X5wAOa0)
 
