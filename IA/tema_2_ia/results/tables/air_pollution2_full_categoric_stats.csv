@@ -1,0 +1,13 @@
+,count_non_null,missing_values,unique_values,sample_values
+Country Name,23463,0,175,['Germany' 'Philippines' 'United States of America' 'Thailand' 'India']
+City Name,23463,0,23462,['Amberg' 'San Pedro' 'Florida Ridge' 'Nong Phai' 'Deoranian']
+CO AQI Category,23463,0,3,['Good' 'Moderate' 'Unhealthy for Sensitive Groups']
+Ozone AQI Category,23463,0,5,"['Good' 'Unhealthy' 'Unhealthy for Sensitive Groups' 'Moderate'
+ 'Very Unhealthy']"
+NO2 AQI Category,23463,0,2,['GO' 'MO']
+PM2.5 AQI Category,23463,0,6,"['Good' 'Moderate' 'Unhealthy' 'Unhealthy for Sensitive Groups'
+ 'Hazardous']"
+Emissions,23463,0,5,"['Good' 'Unhealthy' 'Unhealthy for Sensitive Groups' 'Moderate'
+ 'Very Unhealthy']"
+Overall AQI Level,23463,0,6,"['Good' 'Moderate' 'Unhealthy' 'Unhealthy for Sensitive Groups'
+ 'Hazardous']"

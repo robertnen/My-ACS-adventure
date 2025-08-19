@@ -1,0 +1,3 @@
+,count_non_null,missing_values,unique_values,sample_values
+Timestamp,10000,0,5502,['22:39:12' '17:06:33' '6:26:03' '21:59:28' '21:42:23']
+Day,10000,0,3,['8/8/2024' '9/8/2024' '10/8/2024']

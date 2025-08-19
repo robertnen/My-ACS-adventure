@@ -1,0 +1,40 @@
+boxes:
+- !!python/tuple
+  - box1
+  - 5
+  - 3
+- !!python/tuple
+  - box2
+  - 2
+  - 3
+height: 8
+player:
+- 3
+- 0
+targets:
+- !!python/tuple
+  - 7
+  - 4
+- !!python/tuple
+  - 0
+  - 4
+walls:
+- !!python/tuple
+  - 6
+  - 3
+- !!python/tuple
+  - 6
+  - 4
+- !!python/tuple
+  - 6
+  - 1
+- !!python/tuple
+  - 1
+  - 3
+- !!python/tuple
+  - 1
+  - 4
+- !!python/tuple
+  - 1
+  - 1
+width: 5

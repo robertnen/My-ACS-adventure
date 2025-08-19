@@ -1,0 +1,67 @@
+boxes:
+- !!python/tuple
+  - box1
+  - 3
+  - 3
+- !!python/tuple
+  - box2
+  - 3
+  - 4
+- !!python/tuple
+  - box3
+  - 4
+  - 3
+- !!python/tuple
+  - box4
+  - 6
+  - 3
+- !!python/tuple
+  - box5
+  - 6
+  - 2
+height: 8
+player:
+- 3
+- 2
+targets:
+- !!python/tuple
+  - 0
+  - 0
+- !!python/tuple
+  - 2
+  - 1
+- !!python/tuple
+  - 2
+  - 3
+- !!python/tuple
+  - 2
+  - 4
+- !!python/tuple
+  - 4
+  - 4
+walls:
+- !!python/tuple
+  - 4
+  - 1
+- !!python/tuple
+  - 5
+  - 0
+- !!python/tuple
+  - 6
+  - 0
+- !!python/tuple
+  - 7
+  - 0
+- !!python/tuple
+  - 7
+  - 4
+- !!python/tuple
+  - 5
+  - 4
+- !!python/tuple
+  - 1
+  - 4
+- !!python/tuple
+  - 0
+  - 4
+width: 5

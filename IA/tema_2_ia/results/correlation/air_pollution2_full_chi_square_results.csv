@@ -1,0 +1,11 @@
+pair,chi2_statistic,p_value,significant
+Country Name_vs_City Name,4082284.7900876086,0.4900243153650154,False
+Country Name_vs_CO AQI Category,265.57922043473053,0.9996452949608998,False
+Country Name_vs_Ozone AQI Category,9125.00055145485,0.0,True
+Country Name_vs_NO2 AQI Category,2278.4359496307634,0.0,True
+Country Name_vs_PM2.5 AQI Category,18000.993089693893,0.0,True
+Country Name_vs_Emissions,9125.00055145485,0.0,True
+Country Name_vs_Overall AQI Level,18493.681138785025,0.0,True
+City Name_vs_CO AQI Category,46926.000000000015,0.49392304751649607,False
+City Name_vs_Ozone AQI Category,93851.99999999999,0.4920199919405703,False
+City Name_vs_NO2 AQI Category,23463.0,0.4950890018826177,False

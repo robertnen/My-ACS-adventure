@@ -1,0 +1,5 @@
+Classifier,Accuracy,Precision,Recall,F1-score
+Logistic Regression,0.9295,0.9229,0.9295,0.924
+Decision Tree,0.9459,0.944,0.9459,0.9448
+Random Forest,0.9493,0.9463,0.9493,0.9473
+MLP (Neural Net),0.957,0.9467,0.957,0.9497
