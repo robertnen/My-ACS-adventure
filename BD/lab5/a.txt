@@ -1,0 +1,17 @@
+sa se scrie o cerere care face o lista cu angajatii care indeplinesc urmatoarele conditii:
+1. au functia diferita de manager
+2. au fost angajati in companie dupa seful lor
+3. lucreaza in departamentele 10 sau 30
+
+Antetul listei contine:
+1. nume subaltern
+2. denumire departament in care lucreaza subalternul
+3. data angajare subaltern
+4. functie subaltern
+5. nume sef
+6. denumire departament in care lucreaza seful
+7. data angajare sef
+8. functie sef
+
+Rezolvati prin cel putin 2 metode distincte, una care foloseste
+sintaxa standard (operatorul =) si alta cu JOIN

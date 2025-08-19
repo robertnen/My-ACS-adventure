@@ -1,0 +1,14 @@
+SA se faca o lista cu angajatii departamentului Research care sa 
+contina un calificativ pentru vechimea agajatului si numarul de subordonati
+Calificativul pentru vechime se obtine astfel:
+- daca vin inainte de 1981, atunci calificativul este Vechime Mare
+- daca vin in anul 1981, atunci calificativul este Vechime Medie
+- daca vin dupa 1981, atunci calificativul este Vechime Mica
+
+Lista va afisa si angajatii care nu au subordonati.
+
+Antetul listei este urmatorul:
+nume angajat, job, data_ang, calificativ vechime, numar subordonati
+
+
+Sa se rezolve prin doua metode distincte folosind diverse functii sql

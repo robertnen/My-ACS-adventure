@@ -1,0 +1,5 @@
+sa se scrie o cerere sql care face o lista cu data de evaluare a angajatiilor
+din departamentul de contabilitate. Evaluarea se face dupa 3 luni de la an-
+gajare, in prima zi de luni dupa terminarea celor trei luni de la angajare.
+Antentul listei:
+Denumire depart, Nume ang, Data angajare, Data evaluare

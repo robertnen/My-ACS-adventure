@@ -1,0 +1,11 @@
+Sa se scrie o cerere sql care face o lista cu
+joburile care au cei mai multi angajati fara
+comision dintr-un departament.
+    Lista va contine numai joburile din depar-
+tamentul care are cei mai multi angajati fara
+comision aferenti la jobul respectiv.
+    Antetul listei:
+    denumire departament, nume angajat, job,
+comision
+
+    Rezolvati folosind subcereri

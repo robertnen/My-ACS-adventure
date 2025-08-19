@@ -1,0 +1,5 @@
+sa se creze o tabela care se populeaza cu date in momentul in
+care este creat. Tabela contine informatii despre angajatii
+din departamentul lui Scott care au gradul de salariul egal
+cu gradul de salariu pe care il au cei mai multi angajati
+din companie. Structura tabelei:

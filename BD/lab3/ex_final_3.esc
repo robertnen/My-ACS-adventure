@@ -1,0 +1,9 @@
+accept id_dep number prompt 'Introduceti id departament: ';
+accept venit_mediu number prompt 'Introduceti venit mediu anual: ';
+
+SELECT nume, id_dep, &1 venit_anual
+    FROM angajati
+    WHERE id_dep = &id_dep AND &1 > &venit_mediu;
+
+undefine id_dep;
+undefine venit_mediu;

@@ -1,0 +1,7 @@
+INSERT INTO angajati_1(id_angajat, nume, prenume, functie, id_departament, data_angajare) VALUES(1001, 'Ionescu', 'Ion', 'Director', 30, '81-JAN-13');
+INSERT INTO angajati_1(id_angajat, nume, prenume, functie, id_departament, data_angajare) VALUES(1002, 'Maria', 'Ion', 'Director', 30, '82-JAN-13');
+INSERT INTO angajati_1(id_angajat, nume, prenume, functie, id_departament, data_angajare) VALUES(1003, 'Florin', 'Ion', 'Director', 30, '83-JAN-13');
+INSERT INTO angajati_1(id_angajat, nume, prenume, functie, id_departament, data_angajare) VALUES(1004, 'Marius', 'Ion', 'Director', 33, '81-JAN-13');
+INSERT INTO angajati_1(id_angajat, nume, prenume, functie, id_departament, data_angajare) VALUES(1005, 'Anca', 'Ion', 'Director', 32, '81-JAN-13');
+INSERT INTO angajati_1(id_angajat, nume, prenume, functie, id_departament, data_angajare) VALUES(1006, 'Andrei', 'Ion', 'Director', 30, '81-JAN-13');
+INSERT INTO angajati_1(id_angajat, nume, prenume, functie, id_departament, data_angajare) VALUES(1007, 'Fl', 'Ion', 'Director', 30, '81-JAN-13');

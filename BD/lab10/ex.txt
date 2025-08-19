@@ -1,0 +1,10 @@
+sa se faca o tabela care se populeaza cu tabele
+in momentul crearii
+va contine toti angajatii care au venit in com-
+panie in acelasi an cu cel mai nou sef de depar-
+tament care s-a angajat in companie si au sala-
+riul mai mare decat o treime din salariul lui.
+
+Tabela va avea urmatoarea structura:
+id_sef, data_ang_sef, salariu_sef, id_subaltern,
+data_angajare_subaltern, salariu_subaltern

@@ -1,0 +1,11 @@
+sa se scrie o cerere sql care face
+o lista cu sefii de departament care
+au venituri mai mare decat venitul me-
+diul al subordonatiilor lui.
+(venit = salariu + comision)
+
+Antetul listei este urmatorul:
+denumire departament, nume sef, venit sef,
+venit mediu subaltern
+
+Rezolvati prin diverse metode

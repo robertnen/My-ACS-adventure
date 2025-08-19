@@ -1,0 +1,8 @@
+INSERT INTO departamente_1 VALUES(10, 'Proiectare Software', '3212121');
+INSERT INTO departamente_1 VALUES(20, 'Asigurarea calitatii', '3212122');
+INSERT INTO departamente_1 VALUES(10, 'Resurse Umane', '3212123');
+INSERT INTO departamente_1 VALUES(10, 'Proiectare Software', '3212124');
+
+INSERT INTO angajati_1(id_angajat, nume, prenume, functie) VALUES(1001, 'Ionescu', 'Ion', 'Director');
+INSERT INTO angajati_1(nume, prenume, functie) VALUES('Ionescu', 'Ionel', 'Programator');
+INSERT INTO angajati_1(id_angajat, nume, prenume, functie, id_sef, salariu, id_departament) VALUES(1002, 'Ionescu', 'Ionel', 'Programator', 1001, 1024, 10);

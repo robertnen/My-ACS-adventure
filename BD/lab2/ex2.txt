@@ -1,0 +1,22 @@
+sa se faca o lista cu angajatii din departamentul 30 care au venit in anul 1981
+antetul listei este id_depart, nume_angajat, data_angajare, job.
+
+select id_departament, nume, functie from angajati_1
+    where (id_departament=30 and data_angajarii >= '01-JAN-81' and data_angajarii <= '31-dec-81');
+
+select id_departament, nume, functie, data_angajarii from angajati_1
+    where (id_departament=30 and data_angajarii LIKE '%%-%%-81');
+
+select id_departament, nume, functie, data_angajarii from angajati_1 where (id_departament=30 and data_angajarii BETWEEN '01-JAN-81' AND '31-DEC-81');
+
+
+cerere sql care face o lista cu toti directorii de departament care nu au primit comision, antetul este
+nume_director, data_angajare, job, comision
+
+ SELECT nume AS "Nume Director",
+        data_ang AS "Data Angajarii",
+        functie AS "Functie",
+        comision AS "Comision"
+    FROM angajati
+    WHERE (comision = 0 or comision is null)
+    AND functie = 'MANAGER'
